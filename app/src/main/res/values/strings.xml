@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">hjjc</string>
+
+    <string name="empty"></string>
+
+    <!-- 页面名称 -->
+    <string name="main_navigation_home">主页</string>
+    <string name="main_navigation_admin">管理员</string>
+    <string name="main_navigation_user">我的</string>
 </resources>

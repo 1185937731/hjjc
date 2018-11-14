@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="footer_bar">
@@ -21,8 +22,10 @@
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">5dp</item>
         <item name="android:drawablePadding">3dp</item>
+        <item name="android:background">@drawable/footer_background_color</item>
         <item name="android:textColor">@drawable/footer_text_color</item>
-        <!--<item name="android:textSize">@dimen/text_size_11</item>-->
-        <!--<item name="android:textColor">@drawable/footer_text_color</item>-->
+        <item name="android:textSize">10sp</item>
     </style>
+
+
 </resources>

@@ -7,4 +7,25 @@
     <string name="main_navigation_home">主页</string>
     <string name="main_navigation_admin">管理员</string>
     <string name="main_navigation_user">我的</string>
+
+    <!-- 登录页 -->
+    <string name="btn_login">登录</string>
+    <string name="hint_username">请输入用户名</string>
+    <string name="hint_pwd">请输入密码</string>
+    <string name="tv_admin_register">管理员注册</string>
+    <string name="tv_register">新用户注册</string>
+
+    <!-- 普通用户注册页 -->
+    <string name="hint_pwd_again">请再次输入密码</string>
+    <string name="hint_phonenumber">请输入手机号</string>
+    <string name="hint_email">请输入邮箱</string>
+    <string name="register">注册</string>
+
+    <!--管理员注册-->
+    <string name="next">下一步</string>
+    <string name="hint_area_id">区域代码</string>
+    <string name="hint_area_name">区域名称</string>
+    <string name="hint_admin_name">管理员用户名</string>
+    <string name="hint_reg_code">注册码</string>
+
 </resources>

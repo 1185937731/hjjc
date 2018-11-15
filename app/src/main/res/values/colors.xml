@@ -3,11 +3,22 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="base_bg">#005661</color>
+
+    <!-- 主背景色 -->
+    <color name="main_bg">#ffffff</color>
 
     <!-- 主背景色值 -->
     <color name="background_color">#fff8f8f8</color>
 
     <color name="main_footer_bg">#f5f5f5</color>
+
+    <!-- 按钮的背景 -->
+    <color name="btn_basic_bg">#016a78</color>
+    <color name="btn_basic_degree_bg">#005661</color>
+
+    <!-- 文本主颜色 -->
+    <color name="text_color">#999999</color>
 
     <!--fragment文字顔色-->
     <color name="text_yellow">#fdfdae01</color>

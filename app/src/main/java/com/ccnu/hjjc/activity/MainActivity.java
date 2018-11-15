@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
         viewPager = (ViewPager) findViewById(R.id.fragment_container);
         viewPager.setAdapter(fragmentAdapter);
-        viewPager.setCurrentItem(0);
+        viewPager.setCurrentItem(1);
         viewPager.addOnPageChangeListener(this);
     }
 

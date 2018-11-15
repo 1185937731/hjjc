@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="footer_bar">
@@ -18,10 +19,23 @@
     </style>
 
     <style name="main_footer_bar_radio" parent="footer_bar">
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:paddingBottom">5dp</item>
-        <item name="android:drawablePadding">3dp</item>
-        <!--<item name="android:textSize">@dimen/text_size_11</item>-->
-        <!--<item name="android:textColor">@drawable/footer_text_color</item>-->
+        <item name="android:paddingTop">@dimen/space_5</item>
+        <item name="android:paddingBottom">@dimen/space_3</item>
+        <item name="android:drawablePadding">@dimen/space_5</item>
+        <item name="android:background">@drawable/footer_background_color</item>
+        <item name="android:textColor">@drawable/footer_text_color</item>
+        <item name="android:textSize">@dimen/text_size_10</item>
     </style>
+
+    <style name="fragment_user">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/space_10</item>
+        <item name="android:paddingRight">@dimen/space_10</item>
+        <!--<item name="android:paddingTop">@dimen/space_10</item>-->
+        <!--<item name="android:paddingBottom">@dimen/space_10</item>-->
+        <item name="android:textSize">@dimen/text_size_20</item>
+    </style>
+
+
 </resources>

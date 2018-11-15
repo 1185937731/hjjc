@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
         //管理员注册
 
         tv_admin_register = (TextView) this.findViewById(R.id.tv_admin_register);

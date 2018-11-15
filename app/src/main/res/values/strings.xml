@@ -3,8 +3,24 @@
 
     <string name="empty"></string>
 
+    <!--标题栏-->
+    <string name="title_name">环境监测系统</string>
+
     <!-- 页面名称 -->
     <string name="main_navigation_home">主页</string>
     <string name="main_navigation_admin">管理员</string>
     <string name="main_navigation_user">我的</string>
+
+    <!--管理员界面-->
+    <string name="node_regist">节点注册</string>
+    <string name="mess_config">信息配置</string>
+    <string name="user_manage">用户管理</string>
+
+    <!--我的界面-->
+    <string name="name">用户名</string>
+    <string name="phone">手机号码</string>
+    <string name="email">邮箱</string>
+    <string name="change_password">修改密码</string>
+    <string name="logout">注销账号</string>
+    <string name="exit">退出</string>
 </resources>

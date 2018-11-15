@@ -12,6 +12,9 @@ import com.ccnu.hjjc.R;
 
 public class AdminFragment extends Fragment{
     View view;
+    private TextView node_regist;
+    private TextView mess_config;
+    private TextView user_message;
 
     @Nullable
     @Override
@@ -19,7 +22,17 @@ public class AdminFragment extends Fragment{
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_admin,container,false);
         }
-        ((TextView)view.findViewById(R.id.admin)).setText("管理员");
+        node_regist = (TextView)view.findViewById(R.id.node_regist);
+        mess_config = (TextView)view.findViewById(R.id.mess_config);
+        user_message = (TextView)view.findViewById(R.id.user_manage);
+//        node_regist.setOnClickListener(this);
+//        mess_config.setOnClickListener(this);
+//        user_message.setOnClickListener(this);
         return view;
+    }
+
+    public void onClick(final View view){
+
+
     }
 }

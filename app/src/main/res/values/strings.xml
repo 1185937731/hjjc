@@ -11,7 +11,6 @@
     <string name="main_navigation_admin">管理员</string>
     <string name="main_navigation_user">我的</string>
 
-<<<<<<< HEAD
     <!-- 登录页 -->
     <string name="btn_login">登录</string>
     <string name="hint_username">请输入用户名</string>
@@ -32,7 +31,6 @@
     <string name="hint_admin_name">管理员用户名</string>
     <string name="hint_reg_code">注册码</string>
 
-=======
     <!--管理员界面-->
     <string name="node_regist">节点注册</string>
     <string name="mess_config">信息配置</string>
@@ -45,5 +43,4 @@
     <string name="change_password">修改密码</string>
     <string name="logout">注销账号</string>
     <string name="exit">退出</string>
->>>>>>> b1f6fce93b857a0386711ed135dd9594a63f969a
 </resources>

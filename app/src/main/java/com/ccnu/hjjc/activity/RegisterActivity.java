@@ -17,6 +17,9 @@ import com.ccnu.hjjc.http.Fault;
 import com.ccnu.hjjc.http.HttpLoader;
 import com.google.gson.Gson;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import rx.functions.Action1;
 
 public class RegisterActivity extends AppCompatActivity{
@@ -53,20 +56,26 @@ public class RegisterActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 httpLoader = new HttpLoader();
-                String username=et_username.getText().toString();
-                String password=et_pwd.getText().toString();
-                String password2=et_pwd_again.getText().toString();
-                String phone=et_phone.getText().toString();
-                String email=et_email.getText().toString();
-                if(password!=password2){
-                    Toast.makeText(RegisterActivity.this, "两次密码输入不一致",
-                            Toast.LENGTH_LONG).show();
+                String username=et_username.getText().toString().trim();
+                String password=et_pwd.getText().toString().trim();
+                String passwordconf=et_pwd_again.getText().toString().trim();
+                String phone=et_phone.getText().toString().trim();
+                String email=et_email.getText().toString().trim();
+                if("".equals(username)){
+                    Toast.makeText(RegisterActivity.this, "请输入姓名", Toast.LENGTH_LONG).show();
+                }else if("".equals(password)){
+                    Toast.makeText(RegisterActivity.this, "请输入密码", Toast.LENGTH_LONG).show();
+                }else if("".equals(passwordconf)){
+                    Toast.makeText(RegisterActivity.this, "请确认密码", Toast.LENGTH_LONG).show();
+                }else if(!isMobileNO(phone)){
+                    Toast.makeText(RegisterActivity.this, "请输入正确的电话号码", Toast.LENGTH_LONG).show();
+                }else if(!isEmail(email)){
+                    Toast.makeText(RegisterActivity.this, "请输入正确的邮箱", Toast.LENGTH_LONG).show();
+                }else if(!password.equals(passwordconf)){
+                    Toast.makeText(RegisterActivity.this, "密码输入不一致，请重新输入", Toast.LENGTH_LONG).show();
                 }else{
                     regist(username,password,phone,email);
-
                 }
-
-
             }
         });
 
@@ -112,6 +121,21 @@ public class RegisterActivity extends AppCompatActivity{
 
             }
         });
+    }
+    //判断手机格式是否正确
+
+    public boolean isMobileNO(String mobiles) {
+        Pattern p = Pattern
+                .compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
+        Matcher m = p.matcher(mobiles);
+        return m.matches();
+    }
+    //判断email格式是否正确
+    public boolean isEmail(String email) {
+        String str = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
+        Pattern p = Pattern.compile(str);
+        Matcher m = p.matcher(email);
+        return m.matches();
     }
 
 

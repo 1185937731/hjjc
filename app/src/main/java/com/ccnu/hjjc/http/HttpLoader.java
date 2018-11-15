@@ -22,6 +22,10 @@ public class HttpLoader extends ObjectLoader {
     public Observable<RegistReturnObject> regist(String name, String password,String phone,String email){
         return observe(apiService.Register(name,password,phone,email));
     }
+    //管理员注册
+    public Observable<RegistReturnObject> adminregist(String area,String area_name,String code,String name, String password,String phone,String email){
+        return observe(apiService.AdminRegister(area,area_name,code,name,password,phone,email));
+    }
 
 
 }

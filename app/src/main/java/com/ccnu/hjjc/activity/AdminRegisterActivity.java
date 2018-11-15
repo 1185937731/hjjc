@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import com.ccnu.hjjc.R;
+import com.ccnu.hjjc.http.HttpLoader;
 
 public class AdminRegisterActivity extends AppCompatActivity {
     private EditText et_area_id;
@@ -18,7 +19,6 @@ public class AdminRegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
-        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adminregister);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//设置禁止横屏
@@ -38,13 +38,37 @@ public class AdminRegisterActivity extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(AdminRegisterActivity.this, AdminRegisterActivity2.class);
+                String username=et_username.getText().toString().trim();
+                String area=et_area_id.getText().toString().trim();
+                String area_name=et_area_name.getText().toString().trim();
+                String code=et_reg_code.getText().toString().trim();
+                Intent intent=new Intent(AdminRegisterActivity.this,AdminRegisterActivity2.class);
+                intent.putExtra("username",username);
+                intent.putExtra("area",area);
+                intent.putExtra("area_name",area_name);
+                intent.putExtra("code",code);
                 startActivity(intent);
-
 
             }
         });
 
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

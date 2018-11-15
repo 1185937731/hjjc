@@ -18,13 +18,25 @@ public interface ApiService {
     Observable<LoginReturnObject> Login(@Field("name") String name,
                                         @Field("password") String password);
 
-    //普通用户注册
+    //用户注册
     @FormUrlEncoded
     @POST("MonitorRegist/")
-    Observable<RegistReturnObject> Register(@Field("r_name") String names,
-                                            @Field("r_pwd") String password,
-                                            @Field("r_tel") String phone,
-                                            @Field("r_email") String email);
+    Observable<RegistReturnObject> AdminRegister(
+            @Field("area") String area,
+            @Field("area_name") String area_name,
+            @Field("r_code")String code,
+            @Field("r_name") String names,
+            @Field("r_pwd") String password,
+            @Field("r_tel") String phone,
+            @Field("r_email") String email);
+    //用户注册
+    @FormUrlEncoded
+    @POST("MonitorRegist/")
+    Observable<RegistReturnObject> Register(
+            @Field("r_name") String names,
+            @Field("r_pwd") String password,
+            @Field("r_tel") String phone,
+            @Field("r_email") String email);
 
 
 

@@ -24,7 +24,7 @@ public class UserFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState){
-//        View view = inflater.inflate(R.layout.fragment_user,container,false);
+        View view = inflater.inflate(R.layout.fragment_user,container,false);
         name = (TextView)view.findViewById(R.id.name);
         phone_number = (TextView)view.findViewById(R.id.phone_number);
         email = (TextView)view.findViewById(R.id.email);

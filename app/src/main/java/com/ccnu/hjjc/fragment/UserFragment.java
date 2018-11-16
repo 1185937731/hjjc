@@ -56,6 +56,8 @@ public class UserFragment extends Fragment{
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         httpLoader = new HttpLoader();
+        Bundle bundle = getActivity().getIntent().getExtras();
+        user_name = bundle.getString("username");
 
         change_number = (LinearLayout)getActivity().findViewById(R.id.change_number);
         change_mail = (LinearLayout)getActivity().findViewById(R.id.change_mail);
@@ -83,8 +85,8 @@ public class UserFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-        name.setText("admin");
-        infrom ("admin");
+        name.setText(user_name);
+        infrom (user_name);
         phone_number.setText(tel_old);
 //        System.out.println("number"+tel_old);
         email.setText(mail_old);

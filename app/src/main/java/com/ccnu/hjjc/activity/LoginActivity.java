@@ -20,9 +20,11 @@ import android.widget.Toast;
 
 
 import com.ccnu.hjjc.Bean.LoginReturnObject;
+import com.ccnu.hjjc.Bean.UserInfo;
 import com.ccnu.hjjc.R;
 import com.ccnu.hjjc.http.Fault;
 import com.ccnu.hjjc.http.HttpLoader;
+import com.ccnu.hjjc.util.UserManage;
 import com.google.gson.Gson;
 
 import rx.functions.Action1;
@@ -49,18 +51,20 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
-        sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-
         et_username = (EditText) this.findViewById(R.id.et_username);
         et_pwd = (EditText) this.findViewById(R.id.et_pwd);
         tv_admin_register = (TextView) this.findViewById(R.id.tv_admin_register);
         tv_register = (TextView) this.findViewById(R.id.tv_register);
         btn_login = (Button) this.findViewById(R.id.btn_login);
-
-        et_username.setText(sp.getString("USER_NAME", ""));
-        et_pwd.setText(sp.getString("PASSWORD", ""));
-
+        UserInfo userInfo=UserManage.getInstance().getUserInfo(LoginActivity.this);
+        et_username.setText(userInfo.getUserName());
+        et_pwd.setText(userInfo.getPassword());
+        //有用户和密码
+        if(UserManage.getInstance().hasUserInfo(LoginActivity.this)){
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
 
         //登录
@@ -119,10 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                     System.out.println("登录成功");
                     Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
 
-                    SharedPreferences.Editor editor=sp.edit();
-                    editor.putString("USER_NAME",username);
-                    editor.putString("PASSWORD",password);
-                    editor.apply();
+                    UserManage.getInstance().saveUserInfo(LoginActivity.this, username, password);
 
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     Bundle bundle = new Bundle();

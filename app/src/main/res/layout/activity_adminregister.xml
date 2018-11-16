@@ -74,6 +74,12 @@
         android:paddingLeft="16dp"
         android:singleLine="true"
         android:textSize="@dimen/text_middle_size" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#cccccc" />
 
     <Button
         android:id="@+id/btn_next"
@@ -82,6 +88,7 @@
         android:layout_margin="16dp"
         android:background="@drawable/btn_selector"
         android:text="@string/next"
+        android:textSize="@dimen/text_large_size"
         android:textColor="#ffffff" />
 
 </LinearLayout>

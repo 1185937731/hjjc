@@ -19,7 +19,7 @@
     <string name="tv_register">新用户注册</string>
 
     <!-- 普通用户注册页 -->
-    <string name="hint_pwd_again">请再次输入密码</string>
+    <string name="hint_pwd_again">请确认密码</string>
     <string name="hint_phonenumber">请输入手机号</string>
     <string name="hint_email">请输入邮箱</string>
     <string name="register">注册</string>

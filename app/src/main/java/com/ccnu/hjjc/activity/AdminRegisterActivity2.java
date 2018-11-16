@@ -54,7 +54,7 @@ public class AdminRegisterActivity2 extends AppCompatActivity{
         et_email=(EditText)findViewById(R.id.et_email);
         reg_ok=(Button)findViewById(R.id.reg_ok);
         Intent getIntent =getIntent();
-        t_username.setText(getIntent.getStringExtra("username"));
+        t_username.setText("   "+ getIntent.getStringExtra("username"));
         username=t_username.getText().toString().trim();
         area=getIntent.getStringExtra("area");
         area_name=getIntent.getStringExtra("area_name");
@@ -70,17 +70,22 @@ public class AdminRegisterActivity2 extends AppCompatActivity{
                 String passwordconf=et_pwd_again.getText().toString().trim();
                 String phone=et_phone.getText().toString().trim();
                 String email=et_email.getText().toString().trim();
+                int pwdlength=et_pwd.getText().length();
 
                 if("".equals(password)){
                     Toast.makeText(AdminRegisterActivity2.this, "请输入密码", Toast.LENGTH_LONG).show();
+                }else if(pwdlength<6){
+                    Toast.makeText(AdminRegisterActivity2.this, "密码长度应为6到20之间", Toast.LENGTH_LONG).show();
+                }else if(isNumeric(password)||isChar(password)){
+                    Toast.makeText(AdminRegisterActivity2.this, "密码不能全为数字或字母", Toast.LENGTH_LONG).show();
                 }else if("".equals(passwordconf)){
                     Toast.makeText(AdminRegisterActivity2.this, "请确认密码", Toast.LENGTH_LONG).show();
+                }else if(!password.equals(passwordconf)){
+                    Toast.makeText(AdminRegisterActivity2.this, "密码输入不一致，请重新输入", Toast.LENGTH_LONG).show();
                 }else if(!isMobileNO(phone)){
                     Toast.makeText(AdminRegisterActivity2.this, "请输入正确的电话号码", Toast.LENGTH_LONG).show();
                 }else if(!isEmail(email)){
                     Toast.makeText(AdminRegisterActivity2.this, "请输入正确的邮箱", Toast.LENGTH_LONG).show();
-                }else if(!password.equals(passwordconf)){
-                    Toast.makeText(AdminRegisterActivity2.this, "密码输入不一致，请重新输入", Toast.LENGTH_LONG).show();
                 }else{
                     adminregist(area,area_name,code,username,password,phone,email);
                 }
@@ -112,6 +117,7 @@ public class AdminRegisterActivity2 extends AppCompatActivity{
                 }
                 Toast.makeText(AdminRegisterActivity2.this, "获取数据" + registReturnObject.getRegist(),
                         Toast.LENGTH_LONG).show();
+
             }
         }, new Action1<Throwable>() {
             @Override
@@ -136,7 +142,7 @@ public class AdminRegisterActivity2 extends AppCompatActivity{
 
     public boolean isMobileNO(String mobiles) {
         Pattern p = Pattern
-                .compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
+                .compile("^((13[0-9])|(15[^4,\\D])|(18[0-9]))\\d{8}$");
         Matcher m = p.matcher(mobiles);
         return m.matches();
     }
@@ -146,6 +152,27 @@ public class AdminRegisterActivity2 extends AppCompatActivity{
         Pattern p = Pattern.compile(str);
         Matcher m = p.matcher(email);
         return m.matches();
+    }
+
+    /**
+     * 判断字符串是否只包含数字
+     * @param str
+     * @return
+     */
+    public static boolean isNumeric(String str){
+        Pattern pattern = Pattern.compile("[0-9]*");
+        return pattern.matcher(str).matches();
+    }
+    /** * 纯字母
+     * @param fstrData
+     * @return */
+    public static boolean isChar(String fstrData){
+        char c = fstrData.charAt(0);
+        if(((c>='a'&&c<='z')   ||   (c>='A'&&c<='Z')))
+        {        return   true;
+        }else{
+            return   false;
+        }
     }
 }
 

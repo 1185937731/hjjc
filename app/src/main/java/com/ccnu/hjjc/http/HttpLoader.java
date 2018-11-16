@@ -2,6 +2,7 @@ package com.ccnu.hjjc.http;
 import com.ccnu.hjjc.Bean.LoginReturnObject;
 import com.ccnu.hjjc.Bean.InformReturnObject;
 
+import com.ccnu.hjjc.Bean.RegistReturnObject;
 
 import rx.Observable;
 
@@ -22,6 +23,14 @@ public class HttpLoader extends ObjectLoader {
     //读取电话、邮箱
     public Observable<InformReturnObject> infrom(String name){
         return observe(apiService.Infrom(name));
+    }
+    //普通用户注册
+    public Observable<RegistReturnObject> regist(String name, String password,String phone,String email){
+        return observe(apiService.Register(name,password,phone,email));
+    }
+    //管理员注册
+    public Observable<RegistReturnObject> adminregist(String area,String area_name,String code,String name, String password,String phone,String email){
+        return observe(apiService.AdminRegister(area,area_name,code,name,password,phone,email));
     }
 
     //修改信息

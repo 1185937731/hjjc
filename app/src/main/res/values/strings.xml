@@ -19,7 +19,7 @@
     <string name="tv_register">新用户注册</string>
 
     <!-- 普通用户注册页 -->
-    <string name="hint_pwd_again">请再次输入密码</string>
+    <string name="hint_pwd_again">请确认密码</string>
     <string name="hint_phonenumber">请输入手机号</string>
     <string name="hint_email">请输入邮箱</string>
     <string name="register">注册</string>
@@ -30,6 +30,7 @@
     <string name="hint_area_name">区域名称</string>
     <string name="hint_admin_name">管理员用户名</string>
     <string name="hint_reg_code">注册码</string>
+
 
     <!--管理员界面-->
     <string name="node_regist">节点注册</string>
@@ -43,7 +44,8 @@
     <string name="change_password">修改密码</string>
     <string name="logout">注销账号</string>
     <string name="exit">退出</string>
-    
+
+
     <!--修改手机号、邮箱-->
     <string name="tel_old">已绑手机号</string>
     <string name="tel_new">修改手机号</string>

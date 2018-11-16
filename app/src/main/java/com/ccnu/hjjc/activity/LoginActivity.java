@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                     System.out.println("登录成功");
                     Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
 
-                    UserManage.getInstance().saveUserInfo(LoginActivity.this, username, password);
+                    UserManage.getInstance().saveUserInfo(LoginActivity.this, username, password,monitor_get);
 
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     Bundle bundle = new Bundle();
@@ -132,8 +132,8 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-                Toast.makeText(LoginActivity.this, "获取数据" + loginReturnObject.getLogin() + "&" + loginReturnObject.getMonitor(),
-                        Toast.LENGTH_LONG).show();
+//                Toast.makeText(LoginActivity.this, "获取数据" + loginReturnObject.getLogin() + "&" + loginReturnObject.getMonitor(),
+//                        Toast.LENGTH_LONG).show();
             }
         }, new Action1<Throwable>() {
             @Override

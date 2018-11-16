@@ -24,14 +24,17 @@ public class RetrofitServiceManager {
         builder.connectTimeout(DEFAULT_TIME_OUT, TimeUnit.SECONDS);//连接超时时间
         builder.writeTimeout(DEFAULT_READ_TIME_OUT,TimeUnit.SECONDS);//写操作 超时时间
         builder.readTimeout(DEFAULT_READ_TIME_OUT,TimeUnit.SECONDS);//读操作超时时间
-        if(UserManage.getInstance().hasUserInfo(MyApplication.getContext())){
-            String string=UserManage.getInstance().getUserInfo(MyApplication.getContext()).getUserName();
-            // 添加公共参数拦截器
-            HttpCommonInterceptor commonInterceptor = new HttpCommonInterceptor.Builder()
-                    .addHeaderParams("username",string)
-                    .build();
-            builder.addInterceptor(commonInterceptor);
-        }
+        System.out.println("创建 OKHttpClient");
+        // 添加公共参数拦截器
+//        HttpCommonInterceptor commonInterceptor = new HttpCommonInterceptor.Builder()
+//                .addHeaderParams("username","actl")
+//                .build();
+//        builder.addInterceptor(commonInterceptor);
+//        if(UserManage.getInstance().hasUserInfo(MyApplication.getContext())){
+//            String string=UserManage.getInstance().getUserInfo(MyApplication.getContext()).getUserName();
+//            System.out.println("用户名拦截"+string);
+//
+//        }
 
         // 创建Retrofit
         mRetrofit = new Retrofit.Builder()

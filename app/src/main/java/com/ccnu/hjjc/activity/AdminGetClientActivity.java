@@ -14,6 +14,7 @@ import com.ccnu.hjjc.Bean.GetClientsName;
 import com.ccnu.hjjc.R;
 import com.ccnu.hjjc.http.Fault;
 import com.ccnu.hjjc.http.HttpLoader;
+import com.ccnu.hjjc.util.UserManage;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -52,7 +53,7 @@ public class AdminGetClientActivity extends AppCompatActivity {
             }
         });
         httpLoader=new HttpLoader();
-        showAllUsr ("admin");
+        showAllUsr (UserManage.getInstance().getUserInfo(AdminGetClientActivity.this).getUserName());
     }
 
     public void showAllUsr (String username){

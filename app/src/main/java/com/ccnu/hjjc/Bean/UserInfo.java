@@ -16,6 +16,8 @@ public class UserInfo {
      */
     private String password;
 
+    private int monitor=-1;
+
     public String getPassword() {
         return password;
     }
@@ -32,4 +34,11 @@ public class UserInfo {
         this.userName = userName;
     }
 
+    public int getMonitor() {
+        return monitor;
+    }
+
+    public void setMonitor(int monitor) {
+        this.monitor = monitor;
+    }
 }

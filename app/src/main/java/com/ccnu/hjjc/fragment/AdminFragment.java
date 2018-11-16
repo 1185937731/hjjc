@@ -1,5 +1,6 @@
 package com.ccnu.hjjc.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,7 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ccnu.hjjc.MyApplication;
 import com.ccnu.hjjc.R;
+import com.ccnu.hjjc.activity.AdminGetClientActivity;
+import com.ccnu.hjjc.activity.NodeRegistActivity;
 
 public class AdminFragment extends Fragment{
     View view;
@@ -25,6 +29,20 @@ public class AdminFragment extends Fragment{
         node_regist = (TextView)view.findViewById(R.id.node_regist);
         mess_config = (TextView)view.findViewById(R.id.mess_config);
         user_message = (TextView)view.findViewById(R.id.user_manage);
+        user_message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MyApplication.getContext(),AdminGetClientActivity.class);
+                getActivity().startActivityForResult(intent, 0);
+            }
+        });
+        node_regist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MyApplication.getContext(),NodeRegistActivity.class);
+                getActivity().startActivityForResult(intent, 0);
+            }
+        });
 //        node_regist.setOnClickListener(this);
 //        mess_config.setOnClickListener(this);
 //        user_message.setOnClickListener(this);
@@ -35,4 +53,6 @@ public class AdminFragment extends Fragment{
 
 
     }
+
+
 }

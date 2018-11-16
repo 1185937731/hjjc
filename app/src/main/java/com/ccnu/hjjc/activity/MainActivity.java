@@ -3,8 +3,11 @@ package com.ccnu.hjjc.activity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.ccnu.hjjc.R;
 import com.ccnu.hjjc.adapter.ViewPagerFragmentAdapter;
@@ -16,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private RadioButton rb_home;
     private RadioButton rb_user;
     private ViewPager viewPager;
+    private long exitTime = 0;
 
     private ViewPagerFragmentAdapter fragmentAdapter;
 
@@ -81,6 +85,31 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                     rb_user.setChecked(true);
                     break;
             }
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    /**
+     * 连续点击两次返回键退出应用
+     */
+    private void exit(){
+        if((System.currentTimeMillis() - exitTime)>2000){
+            Log.e("再按一次退出程序","app");
+            Toast.makeText(getApplicationContext(),"再按一次退出程序",Toast.LENGTH_LONG).show();
+            exitTime = System.currentTimeMillis();
+            Log.e("exitTime","app");
+        }else {
+            finish();
+            Log.e("退出","app");
+            System.exit(0);
         }
     }
 

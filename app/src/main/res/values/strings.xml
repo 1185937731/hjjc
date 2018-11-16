@@ -43,4 +43,16 @@
     <string name="change_password">修改密码</string>
     <string name="logout">注销账号</string>
     <string name="exit">退出</string>
+    
+    <!--修改手机号、邮箱-->
+    <string name="tel_old">已绑手机号</string>
+    <string name="tel_new">修改手机号</string>
+    <string name="mail_old">已绑邮箱</string>
+    <string name="mail_new">修改邮箱</string>
+    <string name="confirm">确定修改</string>
+
+    <!--修改密码-->
+    <string name="pwd_old">旧密码</string>
+    <string name="pwd_new">新密码</string>
+    <string name="confirm_pwd">确认密码</string>
 </resources>

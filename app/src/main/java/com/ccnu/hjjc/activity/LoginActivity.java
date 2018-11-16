@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                 login("admin", "12");
 //                doLogin();
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
-
+                finish();
             }
         });
 

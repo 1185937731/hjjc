@@ -1,13 +1,22 @@
 package com.ccnu.hjjc.activity;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.ccnu.hjjc.R;
 import com.ccnu.hjjc.adapter.ViewPagerFragmentAdapter;
+import com.ccnu.hjjc.service.NotificationCollectorService;
 
 public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener,ViewPager.OnPageChangeListener{
 
@@ -16,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private RadioButton rb_home;
     private RadioButton rb_user;
     private ViewPager viewPager;
+    private long exitTime = 0;
 
     private ViewPagerFragmentAdapter fragmentAdapter;
 
@@ -29,6 +39,11 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         fragmentAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager());
         bindViews();
         rb_home.setChecked(true);
+        if(!isEnabled())
+        {
+            startActivity(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
+        }
+        startService(new Intent(MainActivity.this,NotificationCollectorService.class));
     }
 
     private void bindViews() {
@@ -84,4 +99,53 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         }
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    /**
+     * 连续点击两次返回键退出应用
+     */
+    private void exit(){
+        if((System.currentTimeMillis() - exitTime)>2000){
+            Log.e("再按一次退出程序","app");
+            Toast.makeText(getApplicationContext(),"再按一次退出程序",Toast.LENGTH_LONG).show();
+            exitTime = System.currentTimeMillis();
+            Log.e("exitTime","app");
+        }else {
+            finish();
+            Log.e("退出","app");
+            System.exit(0);
+        }
+    }
+
+    private boolean isEnabled() {
+        String pkgName = getPackageName();
+        final String flat = Settings.Secure.getString(getContentResolver(), "enabled_notification_listeners");
+        if (!TextUtils.isEmpty(flat)) {
+            final String[] names = flat.split(":");
+            for (int i = 0; i < names.length; i++) {
+                final ComponentName cn = ComponentName.unflattenFromString(names[i]);
+                if (cn != null) {
+                    if (TextUtils.equals(pkgName, cn.getPackageName())) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==RESULT_OK){
+            viewPager.setCurrentItem(PAGE_ONE);
+        }
+    }
 }

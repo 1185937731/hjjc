@@ -54,6 +54,7 @@
         android:layout_margin="16dp"
         android:background="@drawable/btn_selector"
         android:text="@string/btn_login"
+        android:textSize="@dimen/text_large_size"
         android:textColor="#ffffff" />
 
     <LinearLayout

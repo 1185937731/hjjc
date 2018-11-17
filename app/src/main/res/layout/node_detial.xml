@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context="com.ccnu.hjjc.activity.MainActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#ab9d2f"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/floorTopTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="详情汇总"
+                android:textColor="#fff"
+                android:textSize="25sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#fff" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="0.5dp"
+                android:background="#f0e1a6"
+                android:orientation="vertical"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:layout_gravity="center"
+                    android:background="#fff"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_margin="0.5dp"
+                        android:layout_weight="1"
+                        android:background="#c4ba6d"
+                        android:text="节点编号"
+                        android:textAlignment="center"
+                        android:textColor="#fff"
+                        android:textSize="20dip" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_margin="0.5dp"
+                        android:layout_weight="0.4"
+                        android:background="#c4ba6d"
+                        android:text="类型"
+                        android:textAlignment="center"
+                        android:textColor="#fff"
+                        android:textSize="20dip" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_margin="0.5dp"
+                        android:layout_weight="1"
+                        android:background="#c4ba6d"
+                        android:text="状态"
+                        android:textColor="#fff"
+                        android:textAlignment="center"
+                        android:textSize="20dip" />
+
+
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/main_srl_detial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ListView
+                    android:id="@+id/lv_nodes_detial"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    android:divider="#cccccc"
+                    android:background="#ffffff"
+                    android:dividerHeight="0.5dp">
+                </ListView>
+            </android.support.v4.widget.SwipeRefreshLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

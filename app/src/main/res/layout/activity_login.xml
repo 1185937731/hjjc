@@ -70,7 +70,7 @@
             android:layout_weight="1"
             android:gravity="left|center_vertical"
             android:text="@string/tv_admin_register"
-            android:textColor="@color/text_color"
+            android:textColor="@color/background_color"
             android:textSize="@dimen/text_middle_size" />
 
         <TextView
@@ -80,7 +80,7 @@
             android:layout_weight="1"
             android:gravity="right|center_vertical"
             android:text="@string/tv_register"
-            android:textColor="@color/text_color"
+            android:textColor="@color/background_color"
             android:textSize="@dimen/text_middle_size" />
     </LinearLayout>
 

@@ -2,23 +2,16 @@ package com.ccnu.hjjc.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.ccnu.hjjc.Bean.GetNodesInfo;
 import com.ccnu.hjjc.Bean.GetDetialNodes;
 import com.ccnu.hjjc.Bean.NodeDetial;
-import com.ccnu.hjjc.Bean.Node;
 import com.ccnu.hjjc.R;
 import com.ccnu.hjjc.adapter.NodeDtialAdapter;
-import com.ccnu.hjjc.fragment.HomeFragment;
 import com.ccnu.hjjc.http.Fault;
 import com.ccnu.hjjc.http.HttpLoader;
 import com.google.gson.Gson;

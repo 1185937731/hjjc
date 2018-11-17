@@ -23,12 +23,14 @@ import com.ccnu.hjjc.activity.AdminRegisterActivity;
 import com.ccnu.hjjc.activity.AdminRegisterActivity2;
 import com.ccnu.hjjc.activity.LoginActivity;
 import com.ccnu.hjjc.activity.MainActivity;
+import com.ccnu.hjjc.activity.MessConfigActivity;
 import com.ccnu.hjjc.activity.NodeDetialActivity;
 import com.ccnu.hjjc.adapter.NodeInfoAdapter;
 import com.ccnu.hjjc.Bean.Node;
 import com.ccnu.hjjc.Bean.GetNodesInfo;
 import com.ccnu.hjjc.http.Fault;
 import com.ccnu.hjjc.http.HttpLoader;
+import com.ccnu.hjjc.util.UserManage;
 import com.google.gson.Gson;
 
 import rx.functions.Action1;
@@ -38,7 +40,7 @@ public class HomeFragment extends Fragment{
     private ListView lv_nodes;
     private NodeInfoAdapter nodeInfoAdapter;
     private List<Node> nodes = new ArrayList<>();
-    private String username="admin";
+    private String username;
     private HttpLoader httpLoader;
     private SwipeRefreshLayout swipeRefreshLayout;
     @Nullable
@@ -46,6 +48,7 @@ public class HomeFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle args = getArguments();
+        username=UserManage.getInstance().getUserInfo(getContext()).getUserName();
         if (args != null) {
 //            username=args.getString("username");
         }

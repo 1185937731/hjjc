@@ -97,36 +97,46 @@ public class NodeInfoAdapter extends BaseAdapter {
             viewHolder.it_room.setText(roomId);
         if (door != null && door.length() > 0){
             viewHolder.it_door.setText(door);
-            if (door.equals("异常"))
+            if (door.equals("异常")){
                 viewHolder.it_door.setBackgroundColor(context.getResources().getColor(R.color.warn_color));
-            if (door.equals("离线"))
+            }else if (door.equals("离线")){
                 viewHolder.it_door.setBackgroundColor(context.getResources().getColor(R.color.gary_color));
+            }else{
+                viewHolder.it_door.setBackgroundColor(context.getResources().getColor(R.color.listview_bg));
+            }
         }
 
         if (temp_value != null && temp_value.length() > 0){
             viewHolder.it_temp.setText(temp_value);
-            if (temp_value.equals("异常"))
+            if (temp_value.equals("异常")){
                 viewHolder.it_temp.setBackgroundColor(context.getResources().getColor(R.color.warn_color));
-            if (temp_value.equals("离线"))
+            }else if (temp_value.equals("离线")){
                 viewHolder.it_temp.setBackgroundColor(context.getResources().getColor(R.color.gary_color));
+            }else{
+                viewHolder.it_temp.setBackgroundColor(context.getResources().getColor(R.color.listview_bg));
+            }
         }
 
         if (humi_value != null && humi_value.length() > 0){
             viewHolder.it_humi.setText(humi_value);
             if (humi_value.equals("异常")){
                 viewHolder.it_humi.setBackgroundColor(context.getResources().getColor(R.color.warn_color));
-            }
-            if (humi_value.equals("离线")){
+            }else if (humi_value.equals("离线")){
                 viewHolder.it_humi.setBackgroundColor(context.getResources().getColor(R.color.gary_color));
+            }else{
+                viewHolder.it_humi.setBackgroundColor(context.getResources().getColor(R.color.listview_bg));
             }
         }
 
         if (smoke != null && smoke.length() > 0){
             viewHolder.it_smoke.setText(smoke);
-            if (smoke.equals("异常"))
+            if (smoke.equals("异常")){
                 viewHolder.it_smoke.setBackgroundColor(context.getResources().getColor(R.color.warn_color));
-            if (smoke.equals("离线"))
+            }else if (smoke.equals("离线")){
                 viewHolder.it_smoke.setBackgroundColor(context.getResources().getColor(R.color.gary_color));
+            }else{
+                viewHolder.it_smoke.setBackgroundColor(context.getResources().getColor(R.color.listview_bg));
+            }
         }
 
         return view;

@@ -53,6 +53,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingBottom="@dimen/space_10"
+            android:clickable="true"
             android:paddingTop="@dimen/space_10">
 
             <TextView
@@ -60,12 +61,14 @@
                 style="@style/fragment_user"
                 android:layout_weight="1"
                 android:gravity="left"
+                android:clickable="false"
                 android:text="@string/phone" />
 
             <TextView
                 android:id="@+id/phone_number"
                 style="@style/fragment_user"
                 android:layout_weight="1"
+                android:clickable="false"
                 android:gravity="right" />
         </LinearLayout>
 
@@ -79,6 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:clickable="true"
             android:paddingBottom="@dimen/space_10"
             android:paddingTop="@dimen/space_10">
 

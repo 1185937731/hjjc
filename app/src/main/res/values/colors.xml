@@ -22,10 +22,10 @@
     <color name="btn_basic_degree_bg">#005661</color>
 
     <!-- 文本主颜色 -->
-    <color name="text_color">#999999</color>
+    <color name="gary_color">#999999</color>
 
     <!--fragment文字顔色-->
-    <color name="text_yellow">#fdfdae01</color>
+    <color name="warn_color">#fdfdae01</color>
     <color name="text_black">#060606</color>
 
     <color name="divider">#d2d2d2</color>

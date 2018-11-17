@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.ccnu.hjjc.R;
 import com.ccnu.hjjc.http.Fault;
 import com.ccnu.hjjc.http.HttpLoader;
+import com.ccnu.hjjc.util.UserManage;
 
 import rx.functions.Action1;
 
@@ -90,7 +91,8 @@ public class AddClientActivity extends AppCompatActivity {
                 if (!clientName.isEmpty()) {
                     System.out.println("用户名"+clientName);
                     System.out.println("管理员"+monitorValue);
-                    addClient("admin", clientName, monitorValue);
+                    addClient(UserManage.getInstance().getUserInfo(AddClientActivity.this).getUserName(),
+                            clientName, monitorValue);
                 } else {
                     Toast.makeText(AddClientActivity.this, "用户名不能为空", Toast.LENGTH_LONG).show();
                 }
@@ -110,6 +112,8 @@ public class AddClientActivity extends AppCompatActivity {
                     Toast.makeText(AddClientActivity.this, "新增失败", Toast.LENGTH_LONG).show();
                 } else if (string.equals("2")) {
                     Toast.makeText(AddClientActivity.this, "新增成功", Toast.LENGTH_LONG).show();
+                    clientname.setText("");
+
                 }
             }
         }, new Action1<Throwable>() {

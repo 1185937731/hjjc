@@ -1,8 +1,13 @@
 package com.ccnu.hjjc.http;
 
+import com.ccnu.hjjc.Bean.GetDetialNodes;
 
 import com.ccnu.hjjc.Bean.GetClientsName;
 import com.ccnu.hjjc.Bean.LoginReturnObject;
+import com.ccnu.hjjc.Bean.Node;
+import com.ccnu.hjjc.Bean.GetNodesInfo;
+import com.ccnu.hjjc.Bean.InformReturnObject;
+
 import com.ccnu.hjjc.Bean.RegistReturnObject;
 import com.ccnu.hjjc.Bean.RoomGetReturnObject;
 
@@ -13,12 +18,22 @@ import rx.Observable;
 
 
 public interface ApiService {
-
     //登陆
     @FormUrlEncoded
     @POST("AndroidLoginJudge/")
     Observable<LoginReturnObject> Login(@Field("name") String name,
                                         @Field("password") String password);
+    //请求主页所有数据
+    @FormUrlEncoded
+    @POST("Android_nodes_info/")
+    Observable<GetNodesInfo> NodesInfo(@Field("name") String name);
+
+    //详细页面信息
+    @FormUrlEncoded
+    @POST("check_nodes_info/")
+    Observable<GetDetialNodes>DetialNodesInfo(@Field("username") String username,
+                                              @Field("floor_id") String floorId,
+                                              @Field("room_id") String roomId);
 
     //查看所有用户
     @FormUrlEncoded
@@ -97,4 +112,26 @@ public interface ApiService {
 
 
 
+
+    //读取电话、邮箱
+    @FormUrlEncoded
+    @POST("AndroidModifyUserInfo/")
+    Observable<InformReturnObject> Infrom(@Field("username") String name);
+
+    //修改电话
+    @FormUrlEncoded
+    @POST("AndroidModifyUserInfo/")
+    Observable<String> ChangePhone(@Field("username") String name,
+                                         @Field("new_tel") String new_tel);
+    //修改邮箱
+    @FormUrlEncoded
+    @POST("AndroidModifyUserInfo/")
+    Observable<String> ChangeMail(@Field("username") String name,
+                                   @Field("new_email") String new_email);
+    //修改密码
+    @FormUrlEncoded
+    @POST("AndroidModifyUserInfo/")
+    Observable<String> ChangePassword(@Field("username") String name,
+                                  @Field("old_pwd") String old_pwd,
+                                      @Field("new_pwd") String new_pwd);
 }

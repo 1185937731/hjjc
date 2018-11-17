@@ -63,7 +63,10 @@
         <activity android:name=".activity.ChangeNumberActivity"/>
         <activity android:name=".activity.ChangeMailActivity"/>
         <activity android:name=".activity.ChangePasswordActivity"/>
+        <activity android:name=".activity.NodeDetialActivity">
+        </activity>
 
+        <activity android:name=".activity.MessConfigActivity"/>
     </application>
 
 </manifest>

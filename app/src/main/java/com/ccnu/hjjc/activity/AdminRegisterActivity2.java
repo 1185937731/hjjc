@@ -108,6 +108,7 @@ public class AdminRegisterActivity2 extends AppCompatActivity{
                     Intent intent=new Intent(AdminRegisterActivity2.this, LoginActivity.class);
                     startActivity(intent);
                     Toast.makeText(AdminRegisterActivity2.this, "注册成功", Toast.LENGTH_SHORT).show();
+                    finish();
                 }else if(regist_get==2){
                     Toast.makeText(AdminRegisterActivity2.this, "注册失败—服务器操作失败", Toast.LENGTH_SHORT).show();
                 }else if(regist_get==3){

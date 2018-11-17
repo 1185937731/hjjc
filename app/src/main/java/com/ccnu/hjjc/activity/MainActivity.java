@@ -2,7 +2,6 @@ package com.ccnu.hjjc.activity;
 
 import android.content.ComponentName;
 import android.content.Intent;
-import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.view.ViewPager;
@@ -17,6 +16,8 @@ import android.widget.Toast;
 import com.ccnu.hjjc.R;
 import com.ccnu.hjjc.adapter.ViewPagerFragmentAdapter;
 import com.ccnu.hjjc.service.NotificationCollectorService;
+import com.ccnu.hjjc.util.CustomViewPager;
+import com.ccnu.hjjc.util.UserManage;
 
 public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener,ViewPager.OnPageChangeListener{
 
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private RadioButton rb_admin;
     private RadioButton rb_home;
     private RadioButton rb_user;
-    private ViewPager viewPager;
+    private CustomViewPager viewPager;
     private long exitTime = 0;
 
     private ViewPagerFragmentAdapter fragmentAdapter;
@@ -44,6 +45,12 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             startActivity(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
         }
         startService(new Intent(MainActivity.this,NotificationCollectorService.class));
+
+        if(UserManage.getInstance().getUserInfo(MainActivity.this).getMonitor()==0){
+            rb_admin.setClickable(false);
+            rb_admin.setEnabled(false);
+            group.removeView(rb_admin);
+        }
     }
 
     private void bindViews() {
@@ -53,7 +60,8 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         rb_user = (RadioButton) findViewById(R.id.foot_bar_user);
         group.setOnCheckedChangeListener(this);
 
-        viewPager = (ViewPager) findViewById(R.id.fragment_container);
+        viewPager = (CustomViewPager) findViewById(R.id.fragment_container);
+        viewPager.setScanScroll(false);
         viewPager.setAdapter(fragmentAdapter);
         viewPager.setCurrentItem(1);
         viewPager.addOnPageChangeListener(this);
@@ -80,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
     @Override
     public void onPageSelected(int position) {
+
     }
     @Override
     public void onPageScrollStateChanged(int state) {

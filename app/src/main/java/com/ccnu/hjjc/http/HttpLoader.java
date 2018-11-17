@@ -3,6 +3,7 @@ package com.ccnu.hjjc.http;
 import com.ccnu.hjjc.Bean.GetClientsName;
 import com.ccnu.hjjc.Bean.LoginReturnObject;
 import com.ccnu.hjjc.Bean.RegistReturnObject;
+import com.ccnu.hjjc.Bean.RoomGetReturnObject;
 
 import rx.Observable;
 
@@ -43,6 +44,23 @@ public class HttpLoader extends ObjectLoader {
                                           String type, int humiMax, int humiMin, int tempMin, int tempMax){
         return observe(apiService.addNodeInfo(username, dev_eui, floor_id,  room_id,
                  type,  humiMax,  humiMin,  tempMin,  tempMax));
+    }
+    //提交房间
+    public Observable<RoomGetReturnObject> roomGet(String username, String floor_id, String room_id){
+        return observe(apiService.roomGet(username, floor_id,room_id));
+    }
+
+    //配置该房间
+    public Observable<String> theshold(String username, String floor_id, String room_id,
+                                       int humiMax, int humiMin, int tempMin, int tempMax){
+        return observe(apiService.theshold(username,  floor_id,  room_id,
+                  humiMax,  humiMin,  tempMin,  tempMax));
+    }
+
+    //配置所有房间
+    public Observable<String> thesholdall(String username, int humiMax, int humiMin, int tempMin, int tempMax){
+        return observe(apiService.thesholdall(username, 1,
+                humiMax,  humiMin,  tempMin,  tempMax));
     }
 
 

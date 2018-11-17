@@ -4,6 +4,7 @@ package com.ccnu.hjjc.http;
 import com.ccnu.hjjc.Bean.GetClientsName;
 import com.ccnu.hjjc.Bean.LoginReturnObject;
 import com.ccnu.hjjc.Bean.RegistReturnObject;
+import com.ccnu.hjjc.Bean.RoomGetReturnObject;
 
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -44,8 +45,36 @@ public interface ApiService {
                                    @Field("humiMin") int humiMin,
                                    @Field("tempMin") int tempMin,
                                    @Field("tempMax") int tempMax);
+    //APP提交房间号
+    @FormUrlEncoded
+    @POST("app_set_threshold")
+    Observable<RoomGetReturnObject> roomGet(@Field("username") String username,
+                                            @Field("floor_id") String floor_id,
+                                            @Field("room_id") String room_id);
 
-    //用户注册
+
+    //配置到该房间
+    @FormUrlEncoded
+    @POST("app_set_threshold")
+    Observable<String> theshold(@Field("username")String username,
+                                @Field("floor_id") String floor_id,
+                                @Field("room_id") String room_id,
+                                 @Field("humiMax") int humiMax,
+                                 @Field("humiMin") int humiMin,
+                                 @Field("tempMin") int tempMin,
+                                 @Field("tempMax") int tempMax);
+
+    //配置到所有房间
+    @FormUrlEncoded
+    @POST("app_set_threshold")
+    Observable<String> thesholdall(@Field("usr_name")String username,
+                                 @Field("ifALL") int ifall,
+                                 @Field("humiMax") int humiMax,
+                                 @Field("humiMin") int humiMin,
+                                 @Field("tempMin") int tempMin,
+                                 @Field("tempMax") int tempMax);
+
+    //管理用户注册
     @FormUrlEncoded
     @POST("MonitorRegist/")
     Observable<RegistReturnObject> AdminRegister(

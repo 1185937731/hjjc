@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.ccnu.hjjc.MyApplication;
 import com.ccnu.hjjc.R;
 import com.ccnu.hjjc.activity.AdminGetClientActivity;
+import com.ccnu.hjjc.activity.MessConfigActivity;
 import com.ccnu.hjjc.activity.NodeRegistActivity;
 
 public class AdminFragment extends Fragment{
@@ -41,6 +42,13 @@ public class AdminFragment extends Fragment{
             public void onClick(View view) {
                 Intent intent=new Intent(MyApplication.getContext(),NodeRegistActivity.class);
                 getActivity().startActivityForResult(intent, 0);
+            }
+        });
+        mess_config.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent=new Intent(MyApplication.getContext(),MessConfigActivity.class);
+                getActivity().startActivityForResult(intent,0);
             }
         });
 //        node_regist.setOnClickListener(this);

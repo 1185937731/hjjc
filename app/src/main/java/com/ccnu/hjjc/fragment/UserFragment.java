@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ccnu.hjjc.Bean.InformReturnObject;
-import com.ccnu.hjjc.Bean.LoginReturnObject;
 import com.ccnu.hjjc.R;
 import com.ccnu.hjjc.activity.ChangeMailActivity;
 import com.ccnu.hjjc.activity.ChangeNumberActivity;
@@ -24,6 +23,7 @@ import com.ccnu.hjjc.activity.ChangePasswordActivity;
 import com.ccnu.hjjc.activity.LoginActivity;
 import com.ccnu.hjjc.http.Fault;
 import com.ccnu.hjjc.http.HttpLoader;
+import com.ccnu.hjjc.util.UserManage;
 import com.google.gson.Gson;
 
 import rx.functions.Action1;
@@ -56,9 +56,9 @@ public class UserFragment extends Fragment{
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         httpLoader = new HttpLoader();
-        Bundle bundle = getActivity().getIntent().getExtras();
-        user_name = bundle.getString("username");
-
+//        Bundle bundle = getActivity().getIntent().getExtras();
+//        user_name = bundle.getString("username");
+        user_name=UserManage.getInstance().getUserInfo(getContext()).getUserName();
         change_number = (LinearLayout)getActivity().findViewById(R.id.change_number);
         change_mail = (LinearLayout)getActivity().findViewById(R.id.change_mail);
         name = (TextView) getActivity().findViewById(R.id.name);
@@ -115,6 +115,7 @@ public class UserFragment extends Fragment{
                     startActivity(intent3);
                     break;
                 case R.id.logout:
+                    UserManage.getInstance().clear(getContext());
                     Intent intent4 = new Intent(getActivity(), LoginActivity.class);
                     startActivity(intent4);
                     getActivity().finish();
@@ -162,8 +163,8 @@ public class UserFragment extends Fragment{
                 phone_number.setText(tel_old);
                 email.setText(mail_old);
 
-                Toast.makeText(getActivity(), "获取数据" + informReturnObject.getTel() + "&" +informReturnObject.getEmail() ,
-                        Toast.LENGTH_LONG).show();
+//                Toast.makeText(getActivity(), "获取数据" + informReturnObject.getTel() + "&" +informReturnObject.getEmail() ,
+//                        Toast.LENGTH_LONG).show();
             }
         }, new Action1<Throwable>() {
             @Override

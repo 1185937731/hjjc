@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.ccnu.hjjc.R;
 import com.ccnu.hjjc.http.Fault;
 import com.ccnu.hjjc.http.HttpLoader;
+import com.ccnu.hjjc.util.UserManage;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -53,7 +54,8 @@ public class ChangeNumberActivity extends AppCompatActivity {
 //                        Toast.makeText(getApplicationContext(), "手机号码格式有误！",Toast.LENGTH_LONG).show();
                         Toast.makeText(ChangeNumberActivity.this, "手机号码格式有误！",Toast.LENGTH_LONG).show();
                     }else{
-                        change_phone("admin",tel_new);
+                        change_phone(UserManage.getInstance().getUserInfo(ChangeNumberActivity.this).getUserName(),
+                                tel_new);
 //                        System.out.println("服务器返回的信号"+flag);
                     }
                 }
@@ -79,8 +81,8 @@ public class ChangeNumberActivity extends AppCompatActivity {
             public void call(String flag) {
                 System.out.println("服务器返回数据" +flag);
                 //获取成功，数据在loginReturnObject
-                Toast.makeText(ChangeNumberActivity.this, "获取数据" + flag ,
-                        Toast.LENGTH_LONG).show();
+//                Toast.makeText(ChangeNumberActivity.this, "获取数据" + flag ,
+//                        Toast.LENGTH_LONG).show();
 //                flag = changePhoneObject.getFlag();
                 if(flag.equals("1")){
                     Toast.makeText(ChangeNumberActivity.this, "修改成功",Toast.LENGTH_LONG).show();

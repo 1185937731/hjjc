@@ -2,15 +2,14 @@ package com.ccnu.hjjc.activity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.Toast;
 
-import com.ccnu.hjjc.Bean.LoginReturnObject;
 import com.ccnu.hjjc.Bean.RegistReturnObject;
 import com.ccnu.hjjc.R;
 import com.ccnu.hjjc.http.Fault;
@@ -34,7 +33,6 @@ public class RegisterActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
-//        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//设置禁止横屏
@@ -66,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity{
                     Toast.makeText(RegisterActivity.this, "请输入用户名", Toast.LENGTH_LONG).show();
                 }else if("".equals(password)){
                     Toast.makeText(RegisterActivity.this, "请输入密码", Toast.LENGTH_LONG).show();
-                }else if(pwdlength<6){
+                }else if(pwdlength < 6||pwdlength > 20){
                     Toast.makeText(RegisterActivity.this, "密码长度应为6到20之间", Toast.LENGTH_LONG).show();
                 }else if(isNumeric(password)||isChar(password)){
                     Toast.makeText(RegisterActivity.this, "密码不能全为数字或字母", Toast.LENGTH_LONG).show();
@@ -106,8 +104,8 @@ public class RegisterActivity extends AppCompatActivity{
                 }else if(regist_get==4){
                     Toast.makeText(RegisterActivity.this, "注册失败—该区域编号已存在", Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(RegisterActivity.this, "获取数据" + registReturnObject.getRegist(),
-                        Toast.LENGTH_LONG).show();
+//                Toast.makeText(RegisterActivity.this, "获取数据" + registReturnObject.getRegist(),
+//                        Toast.LENGTH_LONG).show();
             }
         }, new Action1<Throwable>() {
             @Override

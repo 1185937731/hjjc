@@ -1,10 +1,15 @@
 package com.ccnu.hjjc.http;
 
+import com.ccnu.hjjc.Bean.GetDetialNodes;
+
 import com.ccnu.hjjc.Bean.GetClientsName;
 import com.ccnu.hjjc.Bean.LoginReturnObject;
+import com.ccnu.hjjc.Bean.Node;
+import  com.ccnu.hjjc.Bean.GetNodesInfo;
 import com.ccnu.hjjc.Bean.InformReturnObject;
 
 import com.ccnu.hjjc.Bean.RegistReturnObject;
+import com.ccnu.hjjc.Bean.RoomGetReturnObject;
 
 import rx.Observable;
 
@@ -22,6 +27,15 @@ public class HttpLoader extends ObjectLoader {
         return observe(apiService.Login(name,password));
     }
 
+    //主页请求数据
+
+    public Observable<GetNodesInfo> nodesInfo(String name){
+        return observe(apiService.NodesInfo(name));
+    }
+    //详细房间信息
+    public Observable<GetDetialNodes> detailNodesInfo(String name, String floorId , String  roomId){
+        return observe(apiService.DetialNodesInfo(name,floorId,roomId));
+    }
     //读取电话、邮箱
     public Observable<InformReturnObject> infrom(String name){
         return observe(apiService.Infrom(name));
@@ -49,6 +63,23 @@ public class HttpLoader extends ObjectLoader {
                                           String type, int humiMax, int humiMin, int tempMin, int tempMax){
         return observe(apiService.addNodeInfo(username, dev_eui, floor_id,  room_id,
                  type,  humiMax,  humiMin,  tempMin,  tempMax));
+    }
+    //提交房间
+    public Observable<RoomGetReturnObject> roomGet(String username, String floor_id, String room_id){
+        return observe(apiService.roomGet(username, floor_id,room_id));
+    }
+
+    //配置该房间
+    public Observable<String> theshold(String username, String floor_id, String room_id,
+                                       int humiMax, int humiMin, int tempMin, int tempMax){
+        return observe(apiService.theshold(username,  floor_id,  room_id,
+                  humiMax,  humiMin,  tempMin,  tempMax));
+    }
+
+    //配置所有房间
+    public Observable<String> thesholdall(String username, int humiMax, int humiMin, int tempMin, int tempMax){
+        return observe(apiService.thesholdall(username, 1,
+                humiMax,  humiMin,  tempMin,  tempMax));
     }
 
     //修改信息

@@ -17,6 +17,7 @@ import com.ccnu.hjjc.Bean.GetClientsName;
 import com.ccnu.hjjc.R;
 import com.ccnu.hjjc.http.Fault;
 import com.ccnu.hjjc.http.HttpLoader;
+import com.ccnu.hjjc.util.UserManage;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -100,7 +101,8 @@ public class NodeRegistActivity extends AppCompatActivity {
         }else if( Integer.parseInt(tempMax)< Integer.parseInt(tempMin) || Integer.parseInt(humiMax)< Integer.parseInt(humiMin)){
             Toast.makeText(getApplicationContext(), "最大值不能小于最小值！",Toast.LENGTH_LONG).show();
         }else{
-            addNodeInfo ("admin", nodeId,floorId, roomId,
+            addNodeInfo (UserManage.getInstance().getUserInfo(NodeRegistActivity.this).getUserName(),
+                    nodeId,floorId, roomId,
                     nodeType, Integer.parseInt(humiMax), Integer.parseInt(humiMin),
                     Integer.parseInt(tempMin), Integer.parseInt(tempMax));
         }

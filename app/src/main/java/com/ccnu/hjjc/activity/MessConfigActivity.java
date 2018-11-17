@@ -17,6 +17,7 @@ import com.ccnu.hjjc.Bean.RoomGetReturnObject;
 import com.ccnu.hjjc.R;
 import com.ccnu.hjjc.http.Fault;
 import com.ccnu.hjjc.http.HttpLoader;
+import com.ccnu.hjjc.util.UserManage;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -37,11 +38,13 @@ public class MessConfigActivity extends AppCompatActivity {
     private String roomid;
     private String floorid;
     private HttpLoader httpLoader;
+    private String userName;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mess_config);
         httpLoader=new HttpLoader();
+        userName=UserManage.getInstance().getUserInfo(MessConfigActivity.this).getUserName();
         initView();
     }
     public void initView(){
@@ -74,7 +77,7 @@ public class MessConfigActivity extends AppCompatActivity {
                 System.out.println("获取数据信息1");
                 if(!floor_id.getText().toString().trim().isEmpty() && !room_id.getText().toString().trim().isEmpty()){
                     System.out.println("获取数据信息11");
-                    roomGet ("admin",floor_id.getText().toString().trim(), room_id.getText().toString().trim());
+                    roomGet (userName,floor_id.getText().toString().trim(), room_id.getText().toString().trim());
                 }
             }
         });
@@ -90,7 +93,7 @@ public class MessConfigActivity extends AppCompatActivity {
                 System.out.println("获取数据信息2");
                 if(!floor_id.getText().toString().trim().isEmpty() && !room_id.getText().toString().trim().isEmpty()){
                     System.out.println("获取数据信息22");
-                    roomGet ("admin",floor_id.getText().toString().trim(), room_id.getText().toString().trim());
+                    roomGet (userName,floor_id.getText().toString().trim(), room_id.getText().toString().trim());
                 }
             }
         });
@@ -174,7 +177,7 @@ public class MessConfigActivity extends AppCompatActivity {
         }else if( Integer.parseInt(tempMax)< Integer.parseInt(tempMin) || Integer.parseInt(humiMax)< Integer.parseInt(humiMin)){
             Toast.makeText(getApplicationContext(), "最大值不能小于最小值！",Toast.LENGTH_LONG).show();
         }else{
-            thesholdOne ("admin", floorId, roomId, Integer.parseInt(humiMax), Integer.parseInt(humiMin),
+            thesholdOne (userName, floorId, roomId, Integer.parseInt(humiMax), Integer.parseInt(humiMin),
                     Integer.parseInt(tempMin), Integer.parseInt(tempMax));
         }
     }
@@ -226,7 +229,7 @@ public class MessConfigActivity extends AppCompatActivity {
         }else if( Integer.parseInt(tempMax)< Integer.parseInt(tempMin) || Integer.parseInt(humiMax)< Integer.parseInt(humiMin)){
             Toast.makeText(getApplicationContext(), "最大值不能小于最小值！",Toast.LENGTH_LONG).show();
         }else{
-            thesholdAll ("admin", Integer.parseInt(humiMax), Integer.parseInt(humiMin),
+            thesholdAll (userName, Integer.parseInt(humiMax), Integer.parseInt(humiMin),
                     Integer.parseInt(tempMin), Integer.parseInt(tempMax));
         }
     }

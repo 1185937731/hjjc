@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ccnu.hjjc.Bean.InformReturnObject;
 import com.ccnu.hjjc.R;
@@ -93,7 +92,6 @@ public class UserFragment extends Fragment{
     }
 
     View.OnClickListener onclick = new View.OnClickListener(){
-
         @Override
         public void onClick(View view) {
             switch (view.getId()){
@@ -125,6 +123,7 @@ public class UserFragment extends Fragment{
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             UserManage.getInstance().clear(getContext());
+                            System.out.println("是否清除1"+UserManage.getInstance().hasUserInfo(getContext()));
                             Intent intent4 = new Intent(getActivity(), LoginActivity.class);
                             startActivity(intent4);
                             getActivity().finish();
@@ -150,6 +149,7 @@ public class UserFragment extends Fragment{
                     isExit.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            System.out.println("是否清除2"+UserManage.getInstance().hasUserInfo(getContext())+UserManage.getInstance().getUserInfo(getContext()).getAreaName_get()+UserManage.getInstance().getUserInfo(getContext()).getCompanyName_get());
                             getActivity().finish();
                             System.exit(0);
                             dialogInterface.dismiss();

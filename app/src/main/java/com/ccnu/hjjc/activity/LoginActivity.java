@@ -81,6 +81,8 @@ public class LoginActivity extends AppCompatActivity {
                 }else if ("".equals(password)){
                     Toast.makeText(LoginActivity.this, "请输入密码", Toast.LENGTH_LONG).show();
                 }else{
+                    System.out.println("用户名："+username);
+                    System.out.println("密码："+password);
                     login(username,password);
                 }
             }
@@ -122,7 +124,6 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();
                 }else if(login_get==1){
                     Toast.makeText(LoginActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
-
                 }else if(login_get==2){
                     System.out.println("登录成功");
                     Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();

@@ -65,9 +65,8 @@ public class UserManage {
     public boolean hasUserInfo(Context context) {
         UserInfo userInfo = getUserInfo(context);
         if (userInfo != null) {
-            if ((!TextUtils.isEmpty(userInfo.getUserName())) && (!TextUtils.isEmpty(userInfo.getPassword())) && userInfo.getMonitor()!=-1
-             && (!TextUtils.isEmpty(userInfo.getAreaName_get()))
-                    && (!TextUtils.isEmpty(userInfo.getCompanyName_get()))) {//有数据
+            if ((!TextUtils.isEmpty(userInfo.getUserName())) || (!TextUtils.isEmpty(userInfo.getPassword())) || (userInfo.getMonitor()!=-1)
+             || (!TextUtils.isEmpty(userInfo.getAreaName_get())) || (!TextUtils.isEmpty(userInfo.getCompanyName_get()))) {//有数据
                 return true;
             } else {
                 return false;

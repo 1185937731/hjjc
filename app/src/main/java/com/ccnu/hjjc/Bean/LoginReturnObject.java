@@ -3,6 +3,8 @@ package com.ccnu.hjjc.Bean;
 public class LoginReturnObject {
     int login;
     int monitor;
+    String company_name;
+    String area_name;
 
     public String getCompany_name() {
         return company_name;
@@ -20,8 +22,7 @@ public class LoginReturnObject {
         this.area_name = area_name;
     }
 
-    String company_name;
-    String area_name;
+
 
     public int getLogin() {
         return login;

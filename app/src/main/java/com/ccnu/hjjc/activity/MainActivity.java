@@ -46,11 +46,9 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 //        Intent intent=getIntent();
 //        areaName=intent.getStringExtra("areaname");
 //        companyName=intent.getStringExtra("companyname");
-        UserInfo userInfo=UserManage.getInstance().getUserInfo(MainActivity.this);
-        areaName=userInfo.getAreaName_get();
-        companyName=userInfo.getCompanyName_get();
+
         areaNameTitle=findViewById(R.id.area_name);
-        areaNameTitle.setText(companyName+" . "+areaName);
+
         fragmentAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager());
         bindViews();
         rb_home.setChecked(true);
@@ -65,6 +63,16 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             rb_admin.setEnabled(false);
             group.removeView(rb_admin);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        UserInfo userInfo=UserManage.getInstance().getUserInfo(MainActivity.this);
+        areaName=userInfo.getAreaName_get();
+        companyName=userInfo.getCompanyName_get();
+        System.out.println("地区："+areaName+" companyName:"+companyName);
+        areaNameTitle.setText(companyName+" . "+areaName);
     }
 
     private void bindViews() {

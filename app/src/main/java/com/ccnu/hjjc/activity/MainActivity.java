@@ -14,6 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ccnu.hjjc.Bean.UserInfo;
 import com.ccnu.hjjc.R;
 import com.ccnu.hjjc.adapter.ViewPagerFragmentAdapter;
 import com.ccnu.hjjc.service.NotificationCollectorService;
@@ -42,9 +43,12 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent=getIntent();
-        areaName=intent.getStringExtra("areaname");
-        companyName=intent.getStringExtra("companyname");
+//        Intent intent=getIntent();
+//        areaName=intent.getStringExtra("areaname");
+//        companyName=intent.getStringExtra("companyname");
+        UserInfo userInfo=UserManage.getInstance().getUserInfo(MainActivity.this);
+        areaName=userInfo.getAreaName_get();
+        companyName=userInfo.getCompanyName_get();
         areaNameTitle=findViewById(R.id.area_name);
         areaNameTitle.setText(companyName+" . "+areaName);
         fragmentAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager());

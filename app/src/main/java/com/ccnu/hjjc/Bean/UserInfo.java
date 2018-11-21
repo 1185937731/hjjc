@@ -17,6 +17,24 @@ public class UserInfo {
     private String password;
 
     private int monitor=-1;
+    private String areaName_get;
+    private String companyName_get;
+
+    public String getAreaName_get() {
+        return areaName_get;
+    }
+
+    public void setAreaName_get(String areaName_get) {
+        this.areaName_get = areaName_get;
+    }
+
+    public String getCompanyName_get() {
+        return companyName_get;
+    }
+
+    public void setCompanyName_get(String companyName_get) {
+        this.companyName_get = companyName_get;
+    }
 
     public String getPassword() {
         return password;

@@ -127,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
                     System.out.println("登录成功");
                     Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
 
-                    UserManage.getInstance().saveUserInfo(LoginActivity.this, username, password,monitor_get);
+                    UserManage.getInstance().saveUserInfo(LoginActivity.this, username, password,monitor_get,areaName_get,companyName_get);
 
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     Bundle bundle = new Bundle();

@@ -4,7 +4,7 @@
     <string name="empty"></string>
 
     <!--标题栏-->
-    <string name="title_name">环境监测系统</string>
+    <string name="title_name">安全监测</string>
 
     <!-- 页面名称 -->
     <string name="main_navigation_home">主页</string>

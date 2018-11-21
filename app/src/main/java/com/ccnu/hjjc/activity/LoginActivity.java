@@ -37,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     private HttpLoader httpLoader;
     public int login_get;
     public int monitor_get;
+    public String areaName_get;
+    public String companyName_get;
     public String username;
     public String password;
     private long exitTime = 0;
@@ -114,6 +116,8 @@ public class LoginActivity extends AppCompatActivity {
                 System.out.println("数据" + new Gson().toJson(loginReturnObject));
                 login_get=loginReturnObject.getLogin();
                 monitor_get=loginReturnObject.getMonitor();
+                areaName_get=loginReturnObject.getArea_name();
+                companyName_get=loginReturnObject.getCompany_name();
                 if(login_get==0) {
                     Toast.makeText(LoginActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();
                 }else if(login_get==1){
@@ -128,6 +132,8 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("username", username);
+                    bundle.putString("areaname", areaName_get);
+                    bundle.putString("companyname", companyName_get);
                     intent.putExtras(bundle);
                     startActivity(intent);
                     finish();

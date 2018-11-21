@@ -4,6 +4,25 @@ public class LoginReturnObject {
     int login;
     int monitor;
 
+    public String getCompany_name() {
+        return company_name;
+    }
+
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
+    }
+
+    public String getArea_name() {
+        return area_name;
+    }
+
+    public void setArea_name(String area_name) {
+        this.area_name = area_name;
+    }
+
+    String company_name;
+    String area_name;
+
     public int getLogin() {
         return login;
     }

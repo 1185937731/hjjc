@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         fragmentAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager());
         bindViews();
         rb_home.setChecked(true);
-        if(!isEnabled())
-        {
-            startActivity(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
-        }
+//        if(!isEnabled())
+//        {
+//            startActivity(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
+//        }
         startService(new Intent(MainActivity.this,NotificationCollectorService.class));
 
         if(UserManage.getInstance().getUserInfo(MainActivity.this).getMonitor()==0){

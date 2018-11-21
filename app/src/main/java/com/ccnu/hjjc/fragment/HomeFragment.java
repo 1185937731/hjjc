@@ -81,17 +81,22 @@ public class HomeFragment extends Fragment{
                 Intent intent=new Intent(getActivity(), NodeDetialActivity.class);
                 intent.putExtra("floor_id",node.getFloorId());
                 intent.putExtra("room_id",node.getRoomId());
-                intent.putExtra("username","admin");
+                intent.putExtra("username",username);
 
                 startActivity(intent);
 
             }
         });
 
-        NodesInfo(username);
+//        NodesInfo(username);
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        NodesInfo(username);
+    }
 
     /**
      * 模拟加载数据的线程
@@ -101,7 +106,7 @@ public class HomeFragment extends Fragment{
         public void run() {
             try {
                 System.out.println("下拉进入新的数据加载线程");
-                NodesInfo("admin");
+                NodesInfo(username);
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -120,17 +125,25 @@ public class HomeFragment extends Fragment{
                 for (int i=0;i< nodesInfo.size();i++){
                     System.out.println("详细数据" + new Gson().toJson(nodesInfo.get(i)));
                 }
-//                nodeInfoAdapter.clear();
-                nodeInfoAdapter.addNodes(nodesInfo);
-                lv_nodes.setAdapter(nodeInfoAdapter);
-                nodeInfoAdapter.notifyDataSetChanged();
+                if(nodesInfo.size()!=0){
+                    nodeInfoAdapter.clear();
+                    nodeInfoAdapter.addNodes(nodesInfo);
+                    lv_nodes.setAdapter(nodeInfoAdapter);
+                    nodeInfoAdapter.notifyDataSetChanged();
+
+                    Toast.makeText(getActivity(), "更新成功",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getActivity(), "暂无数据",Toast.LENGTH_LONG).show();
+                }
                 swipeRefreshLayout.setRefreshing(false);
-                Toast.makeText(getActivity(), "更新成功",Toast.LENGTH_LONG).show();
+//
             }
         }, new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
                 //获取失败
+                swipeRefreshLayout.setRefreshing(false);
+                Toast.makeText(getActivity(), "请求失败",Toast.LENGTH_LONG).show();
                 Log.e("TAG", "error message:" + throwable.getMessage());
                 if (throwable instanceof Fault) {
                     Fault fault = (Fault) throwable;

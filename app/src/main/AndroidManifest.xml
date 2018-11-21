@@ -29,9 +29,9 @@
             android:name=".service.NotificationCollectorService"
             android:label="NotificationMonitor"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
-        <intent-filter>
-            <action android:name="android.service.notification.NotificationListenerService" />
-        </intent-filter>
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
         </service>
 
         <receiver
@@ -63,8 +63,8 @@
         <activity android:name=".activity.ChangeNumberActivity"/>
         <activity android:name=".activity.ChangeMailActivity"/>
         <activity android:name=".activity.ChangePasswordActivity"/>
-        <activity android:name=".activity.NodeDetialActivity">
-        </activity>
+        <activity android:name=".activity.NodeDetialActivity"/>
+        <activity android:name=".activity.MessConfigActivity"/>
 
 
     </application>

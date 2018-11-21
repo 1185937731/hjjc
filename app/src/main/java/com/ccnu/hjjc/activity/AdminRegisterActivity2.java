@@ -82,11 +82,19 @@ public class AdminRegisterActivity2 extends AppCompatActivity{
                     Toast.makeText(AdminRegisterActivity2.this, "请确认密码", Toast.LENGTH_LONG).show();
                 }else if(!password.equals(passwordconf)){
                     Toast.makeText(AdminRegisterActivity2.this, "密码输入不一致，请重新输入", Toast.LENGTH_LONG).show();
-                }else if(!isMobileNO(phone)){
-                    Toast.makeText(AdminRegisterActivity2.this, "请输入正确的电话号码", Toast.LENGTH_LONG).show();
-                }else if(!isEmail(email)){
-                    Toast.makeText(AdminRegisterActivity2.this, "请输入正确的邮箱", Toast.LENGTH_LONG).show();
-                }else{
+                }else if(!phone.isEmpty()&&!isMobileNO(phone)){
+                        Toast.makeText(AdminRegisterActivity2.this, "请输入正确的电话号码", Toast.LENGTH_LONG).show();
+
+                }else if(!email.isEmpty()&&!isEmail(email)){
+                        Toast.makeText(AdminRegisterActivity2.this, "请输入正确的邮箱", Toast.LENGTH_LONG).show();
+
+                }
+//               else if(!isMobileNO(phone)){
+//                    Toast.makeText(AdminRegisterActivity2.this, "请输入正确的电话号码", Toast.LENGTH_LONG).show();
+//                }else if(!isEmail(email)){
+//                    Toast.makeText(AdminRegisterActivity2.this, "请输入正确的邮箱", Toast.LENGTH_LONG).show();
+//                }
+                else{
                     adminregist(area,area_name,code,username,password,phone,email);
                 }
 

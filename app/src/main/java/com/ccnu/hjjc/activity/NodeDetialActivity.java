@@ -2,10 +2,11 @@ package com.ccnu.hjjc.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
+//import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ccnu.hjjc.Bean.GetDetialNodes;
@@ -25,10 +26,10 @@ public class NodeDetialActivity extends AppCompatActivity {
     private ListView lv_nodes_detial;
     private NodeDtialAdapter nodeDtialAdapter;
     private List<NodeDetial> nodes = new ArrayList<>();
-
+    private TextView floorTopTitle;
     private String username,floor_id,room_id;
     private HttpLoader httpLoader;
-    private SwipeRefreshLayout swipeRefreshLayout;
+  //  private SwipeRefreshLayout swipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -44,7 +45,8 @@ public class NodeDetialActivity extends AppCompatActivity {
 //        t.start();
 
 //        swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.main_srl_detial);
-
+        floorTopTitle=findViewById(R.id.floorTopTitle);
+        floorTopTitle.setText(floor_id+"楼"+room_id+"室 详情");
         lv_nodes_detial=(ListView)findViewById(R.id.lv_nodes_detial);
 //
         nodeDtialAdapter=new NodeDtialAdapter(NodeDetialActivity.this);
@@ -100,7 +102,7 @@ public class NodeDetialActivity extends AppCompatActivity {
                 nodeDtialAdapter.addNodes(detialNodes);
                 lv_nodes_detial.setAdapter(nodeDtialAdapter);
                 nodeDtialAdapter.notifyDataSetChanged();
-                swipeRefreshLayout.setRefreshing(false);
+//                swipeRefreshLayout.setRefreshing(false);
                 Toast.makeText(NodeDetialActivity.this, "更新成功",Toast.LENGTH_LONG).show();
             }
         }, new Action1<Throwable>() {

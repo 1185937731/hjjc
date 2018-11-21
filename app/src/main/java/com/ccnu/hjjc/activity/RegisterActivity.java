@@ -72,11 +72,18 @@ public class RegisterActivity extends AppCompatActivity{
                     Toast.makeText(RegisterActivity.this, "请确认密码", Toast.LENGTH_LONG).show();
                 }else if(!password.equals(passwordconf)){
                     Toast.makeText(RegisterActivity.this, "密码输入不一致，请重新输入", Toast.LENGTH_LONG).show();
-                }else if(!isMobileNO(phone)){
+                }else if(!phone.isEmpty()&&!isMobileNO(phone)){
                     Toast.makeText(RegisterActivity.this, "请输入正确的电话号码", Toast.LENGTH_LONG).show();
-                }else if(!isEmail(email)){
-                    Toast.makeText(RegisterActivity.this, "请输入正确的邮箱", Toast.LENGTH_LONG).show();
-                }else{
+
+                }else if(!email.isEmpty()&&!isEmail(email)){
+                        Toast.makeText(RegisterActivity.this, "请输入正确的邮箱", Toast.LENGTH_LONG).show();
+                }
+//                else if(!isMobileNO(phone)){
+//                    Toast.makeText(RegisterActivity.this, "请输入正确的电话号码", Toast.LENGTH_LONG).show();
+//                }else if(!isEmail(email)){
+//                    Toast.makeText(RegisterActivity.this, "请输入正确的邮箱", Toast.LENGTH_LONG).show();
+//                }
+                else{
                     regist(username,password,phone,email);
                 }
             }

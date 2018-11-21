@@ -97,7 +97,7 @@ public class NodeInfoAdapter extends BaseAdapter {
             viewHolder.it_room.setText(roomId);
         if (door != null && door.length() > 0){
             viewHolder.it_door.setText(door);
-            if (door.equals("异常")){
+            if (door.equals("异常") || door.equals("报警")){
                 viewHolder.it_door.setBackgroundColor(context.getResources().getColor(R.color.warn_color));
             }else if (door.equals("离线")){
                 viewHolder.it_door.setBackgroundColor(context.getResources().getColor(R.color.gary_color));
@@ -108,7 +108,7 @@ public class NodeInfoAdapter extends BaseAdapter {
 
         if (temp_value != null && temp_value.length() > 0){
             viewHolder.it_temp.setText(temp_value);
-            if (temp_value.equals("异常")){
+            if (temp_value.equals("异常") || temp_value.equals("报警")){
                 viewHolder.it_temp.setBackgroundColor(context.getResources().getColor(R.color.warn_color));
             }else if (temp_value.equals("离线")){
                 viewHolder.it_temp.setBackgroundColor(context.getResources().getColor(R.color.gary_color));
@@ -119,7 +119,7 @@ public class NodeInfoAdapter extends BaseAdapter {
 
         if (humi_value != null && humi_value.length() > 0){
             viewHolder.it_humi.setText(humi_value);
-            if (humi_value.equals("异常")){
+            if (humi_value.equals("异常") || humi_value.equals("报警")){
                 viewHolder.it_humi.setBackgroundColor(context.getResources().getColor(R.color.warn_color));
             }else if (humi_value.equals("离线")){
                 viewHolder.it_humi.setBackgroundColor(context.getResources().getColor(R.color.gary_color));
@@ -130,7 +130,7 @@ public class NodeInfoAdapter extends BaseAdapter {
 
         if (smoke != null && smoke.length() > 0){
             viewHolder.it_smoke.setText(smoke);
-            if (smoke.equals("异常")){
+            if (smoke.equals("异常") || smoke.equals("报警")){
                 viewHolder.it_smoke.setBackgroundColor(context.getResources().getColor(R.color.warn_color));
             }else if (smoke.equals("离线")){
                 viewHolder.it_smoke.setBackgroundColor(context.getResources().getColor(R.color.gary_color));

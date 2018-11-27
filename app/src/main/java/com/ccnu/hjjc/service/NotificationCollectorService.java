@@ -57,6 +57,7 @@ public class NotificationCollectorService extends NotificationListenerService {
                 .setSound(sound)
                 .setDefaults(Notification.DEFAULT_LIGHTS)
                 .build();// getNotification()
+        notification.flags = Notification.FLAG_INSISTENT;
 
     }
 

@@ -61,27 +61,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"/>
 
-        <RadioButton
-            android:id="@+id/rb_manager"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:checked="true"
-            android:gravity="center"
-            android:text="管理员"
-            android:textSize="20sp" />
-
-        <RadioButton
-            android:id="@+id/rb_client"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:checked="false"
-            android:text="普通用户"
-            android:textSize="20sp" />
-    </RadioGroup>
 
     <Button
         android:id="@+id/bt_add_client"

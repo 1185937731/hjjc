@@ -11,7 +11,7 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@drawable/actl"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -29,9 +29,9 @@
             android:name=".service.NotificationCollectorService"
             android:label="NotificationMonitor"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
-        <intent-filter>
-            <action android:name="android.service.notification.NotificationListenerService" />
-        </intent-filter>
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
         </service>
 
         <receiver
@@ -63,32 +63,10 @@
         <activity android:name=".activity.ChangeNumberActivity"/>
         <activity android:name=".activity.ChangeMailActivity"/>
         <activity android:name=".activity.ChangePasswordActivity"/>
-        <activity android:name=".activity.NodeDetialActivity">
-        </activity>
-
-
-        <service
-            android:name=".service.NotificationCollectorService"
-            android:label="NotificationMonitor"
-            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
-        <intent-filter>
-            <action android:name="android.service.notification.NotificationListenerService" />
-        </intent-filter>
-        </service>
-
-        <receiver
-            android:name=".service.BootBroadcastReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.USER_PRESENT" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <!-- <category android:name="android.intent.category.HOME" /> -->
-            </intent-filter>
-        </receiver>
+        <activity android:name=".activity.NodeDetialActivity"/>
         <activity android:name=".activity.MessConfigActivity"/>
+
+
     </application>
 
 </manifest>

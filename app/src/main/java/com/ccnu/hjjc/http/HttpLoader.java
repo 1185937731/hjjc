@@ -58,12 +58,20 @@ public class HttpLoader extends ObjectLoader {
         return observe(apiService.addClient(username,newClientName,monitor));
     }
 
-    //节点配置
+    //温湿度节点配置
     public Observable<String> addNodeInfo(String username, String dev_eui,String floor_id, String room_id,
                                           String type, int humiMax, int humiMin, int tempMin, int tempMax){
         return observe(apiService.addNodeInfo(username, dev_eui, floor_id,  room_id,
                  type,  humiMax,  humiMin,  tempMin,  tempMax));
     }
+
+
+    //其他节点配置
+    public Observable<String> addOtherNodeInfo(String username, String dev_eui,String floor_id, String room_id,
+                                          String type){
+        return observe(apiService.addOtherNodeInfo(username, dev_eui, floor_id,  room_id, type));
+    }
+
     //提交房间
     public Observable<RoomGetReturnObject> roomGet(String username, String floor_id, String room_id){
         return observe(apiService.roomGet(username, floor_id,room_id));

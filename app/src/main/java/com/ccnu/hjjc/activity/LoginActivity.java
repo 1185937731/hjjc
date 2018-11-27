@@ -37,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     private HttpLoader httpLoader;
     public int login_get;
     public int monitor_get;
+    public String areaName_get;
+    public String companyName_get;
     public String username;
     public String password;
     private long exitTime = 0;
@@ -79,6 +81,8 @@ public class LoginActivity extends AppCompatActivity {
                 }else if ("".equals(password)){
                     Toast.makeText(LoginActivity.this, "请输入密码", Toast.LENGTH_LONG).show();
                 }else{
+                    System.out.println("用户名："+username);
+                    System.out.println("密码："+password);
                     login(username,password);
                 }
             }
@@ -114,20 +118,23 @@ public class LoginActivity extends AppCompatActivity {
                 System.out.println("数据" + new Gson().toJson(loginReturnObject));
                 login_get=loginReturnObject.getLogin();
                 monitor_get=loginReturnObject.getMonitor();
+                areaName_get=loginReturnObject.getArea_name();
+                companyName_get=loginReturnObject.getCompany_name();
                 if(login_get==0) {
                     Toast.makeText(LoginActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();
                 }else if(login_get==1){
                     Toast.makeText(LoginActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
-
                 }else if(login_get==2){
                     System.out.println("登录成功");
                     Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
 
-                    UserManage.getInstance().saveUserInfo(LoginActivity.this, username, password,monitor_get);
+                    UserManage.getInstance().saveUserInfo(LoginActivity.this, username, password,monitor_get,areaName_get,companyName_get);
 
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("username", username);
+                    bundle.putString("areaname", areaName_get);
+                    bundle.putString("companyname", companyName_get);
                     intent.putExtras(bundle);
                     startActivity(intent);
                     finish();

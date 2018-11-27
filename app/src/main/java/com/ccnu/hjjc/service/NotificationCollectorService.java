@@ -30,11 +30,11 @@ import java.util.List;
 public class NotificationCollectorService extends NotificationListenerService {
     private static final String TAG = "NotifiCollectorMonitor";
     public static final String EXTRA_TITLE = "android.title";
-    
+
     public static final String EXTRA_TEXT = "android.text";
     public static final String EXTRA_SUB_TEXT = "android.subText";
     public static final String EXTRA_LARGE_ICON = "android.largeIcon";
-    
+
     private NotificationManager manager;
     private Notification notification;
     private long[] pattern = {10, 5000,1000};
@@ -49,7 +49,7 @@ public class NotificationCollectorService extends NotificationListenerService {
         Uri sound = Uri.parse("android.resource://" + getPackageName()
                 + "/" + R.raw.warning1);
         notification = new Notification.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.ic_launcher)
                 .setContentTitle("报警通知！")
                 .setContentText("监测环境突发烟雾报警，请立即处理！")
                 .setContentIntent(contentIntent)
@@ -191,6 +191,3 @@ public class NotificationCollectorService extends NotificationListenerService {
         }
     }
 }
-
-
-

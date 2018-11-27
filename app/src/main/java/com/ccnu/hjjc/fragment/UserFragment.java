@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ccnu.hjjc.Bean.InformReturnObject;
 import com.ccnu.hjjc.R;
@@ -93,7 +92,6 @@ public class UserFragment extends Fragment{
     }
 
     View.OnClickListener onclick = new View.OnClickListener(){
-
         @Override
         public void onClick(View view) {
             switch (view.getId()){
@@ -115,21 +113,43 @@ public class UserFragment extends Fragment{
                     startActivity(intent3);
                     break;
                 case R.id.logout:
-                    UserManage.getInstance().clear(getContext());
-                    Intent intent4 = new Intent(getActivity(), LoginActivity.class);
-                    startActivity(intent4);
-                    getActivity().finish();
+                    AlertDialog.Builder isLogout=new AlertDialog.Builder(getActivity());
+                    //设置对话框标题
+                    isLogout.setTitle("注销账号");
+                    //设置对话框消息
+                    isLogout.setMessage("注销后需要重新登录，你确定要注销吗？");
+                    // 添加选择按钮并注册监听
+                    isLogout.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            UserManage.getInstance().clear(getContext());
+                            System.out.println("是否清除1"+UserManage.getInstance().hasUserInfo(getContext()));
+                            Intent intent4 = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(intent4);
+                            getActivity().finish();
+
+                        }
+                    });
+                    isLogout.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    //对话框显示
+                    isLogout.show();
                     break;
                 case R.id.exit:
                     AlertDialog.Builder isExit=new AlertDialog.Builder(getActivity());
                     //设置对话框标题
                     isExit.setTitle("消息提醒");
                     //设置对话框消息
-                    isExit.setMessage("确定要退出吗");
+                    isExit.setMessage("你确定要退出吗？");
                     // 添加选择按钮并注册监听
                     isExit.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            System.out.println("是否清除2"+UserManage.getInstance().hasUserInfo(getContext())+UserManage.getInstance().getUserInfo(getContext()).getAreaName_get()+UserManage.getInstance().getUserInfo(getContext()).getCompanyName_get());
                             getActivity().finish();
                             System.exit(0);
                             dialogInterface.dismiss();

@@ -46,7 +46,7 @@ public interface ApiService {
     Observable<String> addClient(@Field("username") String username,
                                  @Field("new_usr") String newClient,
                                          @Field("new_monitor") int monitor);
-    //注册节点
+    //注册温湿度节点
     @FormUrlEncoded
     @POST("app_set_nodeInfo/")
     Observable<String> addNodeInfo(@Field("username") String username,
@@ -60,6 +60,16 @@ public interface ApiService {
                                    @Field("humiMin") int humiMin,
                                    @Field("tempMin") int tempMin,
                                    @Field("tempMax") int tempMax);
+
+
+    //注册其他节点
+    @FormUrlEncoded
+    @POST("app_set_nodeInfo/")
+    Observable<String> addOtherNodeInfo(@Field("username") String username,
+                                   @Field("dev_eui") String dev_eui,
+                                   @Field("floor_id") String floor_id,
+                                   @Field("room_id") String room_id,
+                                   @Field("type") String type);
     //APP提交房间号
     @FormUrlEncoded
     @POST("app_set_threshold")

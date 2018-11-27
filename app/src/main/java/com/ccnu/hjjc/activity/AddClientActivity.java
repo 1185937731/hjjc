@@ -114,6 +114,10 @@ public class AddClientActivity extends AppCompatActivity {
                     Toast.makeText(AddClientActivity.this, "新增成功", Toast.LENGTH_LONG).show();
                     clientname.setText("");
 
+                }else if (string.equals("3")) {
+                    Toast.makeText(AddClientActivity.this, "没有权限", Toast.LENGTH_LONG).show();
+//                    clientname.setText("");
+
                 }
             }
         }, new Action1<Throwable>() {

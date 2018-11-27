@@ -11,8 +11,10 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ccnu.hjjc.Bean.UserInfo;
 import com.ccnu.hjjc.R;
 import com.ccnu.hjjc.adapter.ViewPagerFragmentAdapter;
 import com.ccnu.hjjc.service.NotificationCollectorService;
@@ -33,10 +35,20 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     public static final int PAGE_ONE = 0;
     public static final int PAGE_TWO = 1;
     public static final int PAGE_THREE = 2;
+
+    public String areaName;
+    public  String companyName;
+    public TextView areaNameTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        Intent intent=getIntent();
+//        areaName=intent.getStringExtra("areaname");
+//        companyName=intent.getStringExtra("companyname");
+
+        areaNameTitle=findViewById(R.id.area_name);
+
         fragmentAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager());
         bindViews();
         rb_home.setChecked(true);
@@ -51,6 +63,16 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             rb_admin.setEnabled(false);
             group.removeView(rb_admin);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        UserInfo userInfo=UserManage.getInstance().getUserInfo(MainActivity.this);
+        areaName=userInfo.getAreaName_get();
+        companyName=userInfo.getCompanyName_get();
+        System.out.println("地区："+areaName+" companyName:"+companyName);
+        areaNameTitle.setText(companyName+" . "+areaName);
     }
 
     private void bindViews() {

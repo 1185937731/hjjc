@@ -105,6 +105,7 @@ public interface ApiService {
     Observable<RegistReturnObject> AdminRegister(
             @Field("area") String area,
             @Field("area_name") String area_name,
+            @Field("company_name")String company_name,
             @Field("r_code")String code,
             @Field("r_name") String names,
             @Field("r_pwd") String password,

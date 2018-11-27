@@ -46,8 +46,12 @@ public class AdminRegisterActivity extends AppCompatActivity {
                 String code=et_reg_code.getText().toString().trim();
                 if(area.isEmpty()){
                     Toast.makeText(AdminRegisterActivity.this, "请输入区域编号", Toast.LENGTH_LONG).show();
+                }else if(area.length()>6){
+                    Toast.makeText(AdminRegisterActivity.this, "区域编号字数不能多于6个", Toast.LENGTH_LONG).show();
                 }else if(area_name.isEmpty()){
                     Toast.makeText(AdminRegisterActivity.this, "请输入区域名称", Toast.LENGTH_LONG).show();
+                }else if(area_name.length()>6){
+                    Toast.makeText(AdminRegisterActivity.this, "区域名称字数不能多于6个", Toast.LENGTH_LONG).show();
                 }else if(username.isEmpty()){
                     Toast.makeText(AdminRegisterActivity.this, "请输入用户名", Toast.LENGTH_LONG).show();
                 }else if(code.isEmpty()){

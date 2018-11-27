@@ -120,7 +120,6 @@ public class MessConfigActivity extends AppCompatActivity {
             public void call(RoomGetReturnObject roomgetReturnObject) {
                 System.out.println("数据是什么" + new Gson().toJson(roomgetReturnObject));
                 int flag=roomgetReturnObject.getFlag();
-                System.out.println("获取数据信息90");
                 if(flag==0){
                     Toast.makeText(getApplicationContext(), "该房间号不存在",Toast.LENGTH_LONG).show();
                     System.out.println("获取数据信息5 flag==0");
@@ -133,7 +132,7 @@ public class MessConfigActivity extends AppCompatActivity {
                     humi_min.setText(roomgetReturnObject.getData().getHum_low_threshold()+"");
                     humi_max.setText(roomgetReturnObject.getData().getHum_high_threshold()+"");
                 } else if(flag==2){
-                    Toast.makeText(getApplicationContext(), "该房间号存在",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "配置失败",Toast.LENGTH_LONG).show();
                     System.out.println("获取数据信息7 flag==2");
 //                    temp_min.setText(roomgetReturnObject.getData().getTem_low_threshold());
 //                    temp_max.setText(roomgetReturnObject.getData().getTem_high_threshold());

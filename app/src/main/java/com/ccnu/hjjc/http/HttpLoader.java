@@ -45,8 +45,8 @@ public class HttpLoader extends ObjectLoader {
         return observe(apiService.Register(name,password,phone,email));
     }
     //管理员注册
-    public Observable<RegistReturnObject> adminregist(String area,String area_name,String code,String name, String password,String phone,String email){
-        return observe(apiService.AdminRegister(area,area_name,code,name,password,phone,email));
+    public Observable<RegistReturnObject> adminregist(String area,String area_name,String company_name,String code,String name, String password,String phone,String email){
+        return observe(apiService.AdminRegister(area,area_name,company_name,code,name,password,phone,email));
     }
     //登陆
     public Observable<GetClientsName> showAllUsr(String username){

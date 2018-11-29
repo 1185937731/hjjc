@@ -28,6 +28,7 @@
     <string name="next">下一步</string>
     <string name="hint_area_id">区域代码</string>
     <string name="hint_area_name">区域名称</string>
+    <string name="hint_company_name">单位名称</string>
     <string name="hint_admin_name">管理员用户名</string>
     <string name="hint_reg_code">注册码</string>
 

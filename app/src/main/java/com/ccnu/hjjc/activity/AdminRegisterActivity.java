@@ -17,6 +17,7 @@ public class AdminRegisterActivity extends AppCompatActivity {
     private EditText et_area_name;
     private EditText et_username;
     private EditText et_reg_code;
+    private EditText et_company_name;
     private Button btn_next;
 
     @Override
@@ -33,6 +34,7 @@ public class AdminRegisterActivity extends AppCompatActivity {
         et_username=(EditText) findViewById(R.id.et_username);
         et_area_id=(EditText) findViewById(R.id.et_area_id);
         et_area_name=(EditText) findViewById(R.id.et_area_name);
+        et_company_name=(EditText) findViewById(R.id.et_company_name);
         et_reg_code=(EditText)findViewById(R.id.et_reg_code);
         btn_next=(Button)findViewById(R.id.btn_next);
 
@@ -43,15 +45,18 @@ public class AdminRegisterActivity extends AppCompatActivity {
                 String username=et_username.getText().toString().trim();
                 String area=et_area_id.getText().toString().trim();
                 String area_name=et_area_name.getText().toString().trim();
+                String company_name=et_company_name.getText().toString().trim();
                 String code=et_reg_code.getText().toString().trim();
                 if(area.isEmpty()){
                     Toast.makeText(AdminRegisterActivity.this, "请输入区域编号", Toast.LENGTH_LONG).show();
-                }else if(area.length()>6){
-                    Toast.makeText(AdminRegisterActivity.this, "区域编号字数不能多于6个", Toast.LENGTH_LONG).show();
                 }else if(area_name.isEmpty()){
                     Toast.makeText(AdminRegisterActivity.this, "请输入区域名称", Toast.LENGTH_LONG).show();
                 }else if(area_name.length()>6){
                     Toast.makeText(AdminRegisterActivity.this, "区域名称字数不能多于6个", Toast.LENGTH_LONG).show();
+                }else if(company_name.isEmpty()){
+                    Toast.makeText(AdminRegisterActivity.this, "请输入单位名称", Toast.LENGTH_LONG).show();
+                }else if(company_name.length()>6){
+                    Toast.makeText(AdminRegisterActivity.this, "单位名称字数不能多于6个", Toast.LENGTH_LONG).show();
                 }else if(username.isEmpty()){
                     Toast.makeText(AdminRegisterActivity.this, "请输入用户名", Toast.LENGTH_LONG).show();
                 }else if(code.isEmpty()){
@@ -62,6 +67,7 @@ public class AdminRegisterActivity extends AppCompatActivity {
                     intent.putExtra("username",username);
                     intent.putExtra("area",area);
                     intent.putExtra("area_name",area_name);
+                    intent.putExtra("company_name",company_name);
                     intent.putExtra("code",code);
                     startActivity(intent);
                 }

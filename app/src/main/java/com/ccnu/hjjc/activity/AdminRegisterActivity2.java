@@ -36,6 +36,7 @@ public class AdminRegisterActivity2 extends AppCompatActivity{
     private String area;
     private String area_name;
     private String code;
+    private String company_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -58,6 +59,7 @@ public class AdminRegisterActivity2 extends AppCompatActivity{
         username=t_username.getText().toString().trim();
         area=getIntent.getStringExtra("area");
         area_name=getIntent.getStringExtra("area_name");
+        company_name=getIntent.getStringExtra("company_name");
         code=getIntent.getStringExtra("code");
 
         //注册
@@ -95,7 +97,7 @@ public class AdminRegisterActivity2 extends AppCompatActivity{
 //                    Toast.makeText(AdminRegisterActivity2.this, "请输入正确的邮箱", Toast.LENGTH_LONG).show();
 //                }
                 else{
-                    adminregist(area,area_name,code,username,password,phone,email);
+                    adminregist(area,area_name,company_name,code,username,password,phone,email);
                 }
 
             }
@@ -104,8 +106,8 @@ public class AdminRegisterActivity2 extends AppCompatActivity{
 
     }
 
-    public void adminregist(String area,String area_name,String code,String name, String password,String phone,String email) {
-        httpLoader.adminregist(area,area_name,code,name,password,phone,email).subscribe(new Action1<RegistReturnObject>() {
+    public void adminregist(String area,String area_name,String company_name,String code,String name, String password,String phone,String email) {
+        httpLoader.adminregist(area,area_name,company_name,code,name,password,phone,email).subscribe(new Action1<RegistReturnObject>() {
             @Override
             public void call(RegistReturnObject registReturnObject) {
                 System.out.println("数据" + new Gson().toJson(registReturnObject));

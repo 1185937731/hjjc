@@ -8,6 +8,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -20,6 +21,8 @@ import com.ccnu.hjjc.R;
 import com.ccnu.hjjc.activity.MainActivity;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Parameter;
+import java.security.Policy;
 import java.util.List;
 
 
@@ -37,7 +40,9 @@ public class NotificationCollectorService extends NotificationListenerService {
 
     private NotificationManager manager;
     private Notification notification;
+    private Camera camera = null;
     private long[] pattern = {10, 5000,1000};
+    private boolean isOpenFlashLight = false;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -49,16 +54,14 @@ public class NotificationCollectorService extends NotificationListenerService {
         Uri sound = Uri.parse("android.resource://" + getPackageName()
                 + "/" + R.raw.warning1);
         notification = new Notification.Builder(this)
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("报警通知！")
                 .setContentText("监测环境突发烟雾报警，请立即处理！")
                 .setContentIntent(contentIntent)
                 .setVibrate(pattern)
                 .setSound(sound)
-                .setDefaults(Notification.DEFAULT_LIGHTS)
                 .build();// getNotification()
         notification.flags = Notification.FLAG_INSISTENT;
-
     }
 
     @Override
@@ -107,7 +110,6 @@ public class NotificationCollectorService extends NotificationListenerService {
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
         Notification n = sbn.getNotification();
-        MyThread myThread = new MyThread();
         if (n == null) {
             return;
         }
@@ -146,10 +148,32 @@ public class NotificationCollectorService extends NotificationListenerService {
                 + " ,contentTitle=" + contentTitle + " ,contentText="
                 + contentText + " ,contentSubtext=" + contentSubtext);
         if (title.contains("监控系统报警信息通知")) {
-            if(myThread.isAlive()==false)
-            {
-                myThread.start();
-            }
+            isOpenFlashLight = true;
+            new Thread(){
+                @Override
+                public void run() {
+                    super.run();
+                    try{
+                        manager.notify(1, notification);
+                    }catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    while (isOpenFlashLight) {
+                        OpenFlashLight();
+                        try {
+                            Thread.sleep(300);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        CloseFlashLight();
+                        try {
+                            Thread.sleep(300);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }.start();
         }
     }
 
@@ -158,14 +182,19 @@ public class NotificationCollectorService extends NotificationListenerService {
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
         // TODO Auto-generated method stub
-//        Bundle extras = sbn.getNotification().extras;
-//        //  获取接收消息APP的包名
-//        String notificationPkg = sbn.getPackageName();
-//        // 获取接收消息的抬头
-//        String notificationTitle = extras.getString(Notification.EXTRA_TITLE);
-//        // 获取接收消息的内容
-//        String notificationText = extras.getString(Notification.EXTRA_TEXT);
-//        Log.e(TAG, "Notification removed " + notificationTitle + " & " + notificationText + " & " + notificationPkg);
+        Bundle extras = sbn.getNotification().extras;
+        //  获取接收消息APP的包名
+        String notificationPkg = sbn.getPackageName();
+        // 获取接收消息的抬头
+        String notificationTitle = extras.getString(Notification.EXTRA_TITLE);
+        // 获取接收消息的内容
+        String notificationText = extras.getString(Notification.EXTRA_TEXT);
+        Log.e(TAG, "Notification removed " + notificationTitle + " & " + notificationText + " & " + notificationPkg);
+        if (notificationTitle.contains("报警通知！")) {
+            if(notificationText.contains("监测环境突发烟雾报警，请立即处理！")){
+                isOpenFlashLight = false;
+            }
+        }
     }
 
     @Override
@@ -180,15 +209,27 @@ public class NotificationCollectorService extends NotificationListenerService {
         return super.onBind(intent);
     }
 
-    class MyThread extends Thread {
-        @Override
-        public void run() {
-            try{
-                manager.notify(1, notification);
-            }catch (Exception e) {
-                e.printStackTrace();
-            }
+    private void OpenFlashLight(){
+        try{
+            camera = Camera.open();
+            Camera.Parameters mParameters;
+            mParameters = camera.getParameters();
+            mParameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+            camera.setParameters(mParameters);
+        } catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
 
+    private void CloseFlashLight(){
+        try{
+            Camera.Parameters mParameters;
+            mParameters = camera.getParameters();
+            mParameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+            camera.setParameters(mParameters);
+            camera.release();
+        } catch(Exception ex){
+            ex.printStackTrace();
         }
     }
 }

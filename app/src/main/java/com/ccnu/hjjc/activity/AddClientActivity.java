@@ -24,9 +24,9 @@ public class AddClientActivity extends AppCompatActivity {
 
     private LinearLayout cancel;
     private EditText clientname;
-    private RadioGroup monitor;
+//    private RadioGroup monitor;
     private Button addClient;
-    private int monitorValue = 1;//‘0’为普通用户，‘1’为管理员；
+    private int monitorValue = 0;//‘0’为普通用户，‘1’为管理员；
     private HttpLoader httpLoader;
 
     @Override
@@ -42,7 +42,7 @@ public class AddClientActivity extends AppCompatActivity {
         addClient = findViewById(R.id.bt_add_client);
         cancel = findViewById(R.id.ll_cancel);
         clientname = findViewById(R.id.et_clientname);
-        monitor = findViewById(R.id.rg_monitor);
+//        monitor = findViewById(R.id.rg_monitor);
         addClient = findViewById(R.id.bt_add_client);
         addClient.setEnabled(false);
         addClient.setClickable(false);
@@ -74,16 +74,16 @@ public class AddClientActivity extends AppCompatActivity {
                 }
             }
         });
-        monitor.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.rb_manager) {
-                    monitorValue = 1;
-                } else if (i == R.id.rb_client) {
-                    monitorValue = 0;
-                }
-            }
-        });
+//        monitor.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+//                if (i == R.id.rb_manager) {
+//                    monitorValue = 1;
+//                } else if (i == R.id.rb_client) {
+//                    monitorValue = 0;
+//                }
+//            }
+//        });
         addClient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

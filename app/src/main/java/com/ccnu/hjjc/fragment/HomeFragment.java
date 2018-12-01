@@ -35,6 +35,8 @@ public class HomeFragment extends Fragment{
     private String username;
     private HttpLoader httpLoader;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private int flag = 0;
+
     @Nullable
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,7 @@ public class HomeFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
+        flag = 0;
         NodesInfo(username);
     }
 
@@ -98,6 +101,7 @@ public class HomeFragment extends Fragment{
         public void run() {
             try {
                 System.out.println("下拉进入新的数据加载线程");
+                flag = 1;
                 NodesInfo(username);
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
@@ -122,10 +126,13 @@ public class HomeFragment extends Fragment{
                     nodeInfoAdapter.addNodes(nodesInfo);
                     lv_nodes.setAdapter(nodeInfoAdapter);
                     nodeInfoAdapter.notifyDataSetChanged();
-
-                    Toast.makeText(getActivity(), "更新成功",Toast.LENGTH_LONG).show();
+                    if (flag == 1){
+                        Toast.makeText(getActivity(), "更新成功",Toast.LENGTH_SHORT).show();
+                    }
                 }else{
-                    Toast.makeText(getActivity(), "暂无数据",Toast.LENGTH_LONG).show();
+                    if(flag ==1){
+                        Toast.makeText(getActivity(), "暂无数据",Toast.LENGTH_SHORT).show();
+                    }
                 }
                 swipeRefreshLayout.setRefreshing(false);
 //
@@ -135,7 +142,7 @@ public class HomeFragment extends Fragment{
             public void call(Throwable throwable) {
                 //获取失败
                 swipeRefreshLayout.setRefreshing(false);
-                Toast.makeText(getActivity(), "请求失败",Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "请求失败",Toast.LENGTH_SHORT).show();
                 Log.e("TAG", "error message:" + throwable.getMessage());
                 if (throwable instanceof Fault) {
                     Fault fault = (Fault) throwable;

@@ -39,7 +39,6 @@ public class AddClientActivity extends AppCompatActivity {
 
 
     public void initView() {
-        addClient = findViewById(R.id.bt_add_client);
         cancel = findViewById(R.id.ll_cancel);
         clientname = findViewById(R.id.et_clientname);
 //        monitor = findViewById(R.id.rg_monitor);

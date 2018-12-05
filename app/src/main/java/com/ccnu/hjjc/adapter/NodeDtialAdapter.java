@@ -80,8 +80,8 @@ public class NodeDtialAdapter extends BaseAdapter {
 
         NodeDetial node = nodes.get(i);
         String dev_eui = node.getDev_eui();
-        String type = node.getType();
-        switch (type){
+            String type = node.getType();
+            switch (type){
             case "tem_hum":
                 type="温湿度";
                 break;

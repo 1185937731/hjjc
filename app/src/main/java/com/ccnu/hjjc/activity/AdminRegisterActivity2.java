@@ -128,8 +128,8 @@ public class AdminRegisterActivity2 extends AppCompatActivity{
                 }else if(regist_get==5){
                     Toast.makeText(AdminRegisterActivity2.this, "非法注册—该注册码不存在", Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(AdminRegisterActivity2.this, "获取数据" + registReturnObject.getRegist(),
-                        Toast.LENGTH_LONG).show();
+//                Toast.makeText(AdminRegisterActivity2.this, "获取数据" + registReturnObject.getRegist(),
+//                        Toast.LENGTH_LONG).show();
 
             }
         }, new Action1<Throwable>() {

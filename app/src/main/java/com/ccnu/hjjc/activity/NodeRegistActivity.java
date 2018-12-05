@@ -40,6 +40,8 @@ public class NodeRegistActivity extends AppCompatActivity {
     private LinearLayout ll_temp_humi;
     private HttpLoader httpLoader;
 
+    private long lastClickTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,12 +91,21 @@ public class NodeRegistActivity extends AppCompatActivity {
         bt_add_node.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dataCheck();
+                long now = System.currentTimeMillis();
+
+                if(now - lastClickTime >3000){
+                    System.out.println("过了3s");//3秒内重复操作无效
+                    lastClickTime = now;
+                    dataCheck();
+                }else {
+                    System.out.println("3秒内重复操作无效");
+                }
             }
         });
     }
 
     private void dataCheck() {
+        System.out.println("节点注册");
         String nodeId = node_num.getText().toString().trim();
         String floorId = floor_id.getText().toString().trim();
         String roomId = room_id.getText().toString().trim();
@@ -170,13 +181,13 @@ public class NodeRegistActivity extends AppCompatActivity {
                     Toast.makeText(NodeRegistActivity.this, "该设备已存在", Toast.LENGTH_LONG).show();
                 } else if (flags.equals("2")) {
                     Toast.makeText(NodeRegistActivity.this, "注册成功", Toast.LENGTH_LONG).show();
-                    node_num.setText("");
-                    floor_id.setText("");
-                    room_id.setText("");
-                    temp_min.setText("");
-                    temp_max.setText("");
-                    humi_min.setText("");
-                    humi_max.setText("");
+//                    node_num.setText("");
+//                    floor_id.setText("");
+//                    room_id.setText("");
+//                    temp_min.setText("");
+//                    temp_max.setText("");
+//                    humi_min.setText("");
+//                    humi_max.setText("");
                 } else if (flags.equals("3")) {
                     Toast.makeText(NodeRegistActivity.this, "注册失败", Toast.LENGTH_LONG).show();
                 }
@@ -215,9 +226,9 @@ public class NodeRegistActivity extends AppCompatActivity {
                     Toast.makeText(NodeRegistActivity.this, "该设备已存在", Toast.LENGTH_LONG).show();
                 } else if (flags.equals("2")) {
                     Toast.makeText(NodeRegistActivity.this, "注册成功", Toast.LENGTH_LONG).show();
-                    node_num.setText("");
-                    floor_id.setText("");
-                    room_id.setText("");
+//                    node_num.setText("");
+//                    floor_id.setText("");
+//                    room_id.setText("");
                 } else if (flags.equals("3")) {
                     Toast.makeText(NodeRegistActivity.this, "注册失败", Toast.LENGTH_LONG).show();
                 }

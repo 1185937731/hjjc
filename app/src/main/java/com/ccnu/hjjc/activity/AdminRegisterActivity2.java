@@ -78,17 +78,17 @@ public class AdminRegisterActivity2 extends AppCompatActivity{
                     Toast.makeText(AdminRegisterActivity2.this, "请输入密码", Toast.LENGTH_LONG).show();
                 }else if(pwdlength<6){
                     Toast.makeText(AdminRegisterActivity2.this, "密码长度应为6到20之间", Toast.LENGTH_LONG).show();
-                }else if(isNumeric(password)||isChar(password)){
+                }else if(ispsd(password)){
                     Toast.makeText(AdminRegisterActivity2.this, "密码不能全为数字或字母", Toast.LENGTH_LONG).show();
                 }else if("".equals(passwordconf)){
                     Toast.makeText(AdminRegisterActivity2.this, "请确认密码", Toast.LENGTH_LONG).show();
                 }else if(!password.equals(passwordconf)){
                     Toast.makeText(AdminRegisterActivity2.this, "密码输入不一致，请重新输入", Toast.LENGTH_LONG).show();
                 }else if(!phone.isEmpty()&&!isMobileNO(phone)){
-                        Toast.makeText(AdminRegisterActivity2.this, "请输入正确的电话号码", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AdminRegisterActivity2.this, "请输入正确的电话号码", Toast.LENGTH_LONG).show();
 
                 }else if(!email.isEmpty()&&!isEmail(email)){
-                        Toast.makeText(AdminRegisterActivity2.this, "请输入正确的邮箱", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AdminRegisterActivity2.this, "请输入正确的邮箱", Toast.LENGTH_LONG).show();
 
                 }
 //               else if(!isMobileNO(phone)){
@@ -167,26 +167,32 @@ public class AdminRegisterActivity2 extends AppCompatActivity{
         return m.matches();
     }
 
-    /**
-     * 判断字符串是否只包含数字
-     * @param str
-     * @return
-     */
-    public static boolean isNumeric(String str){
-        Pattern pattern = Pattern.compile("[0-9]*");
-        return pattern.matcher(str).matches();
+    public static boolean ispsd(String psd) {
+        Pattern p = Pattern
+                .compile("^[a-zA-Z].*[0-9]|.*[0-9].*[a-zA-Z]");
+        Matcher m = p.matcher(psd);
+        return m.matches();
     }
-    /** * 纯字母
-     * @param fstrData
-     * @return */
-    public static boolean isChar(String fstrData){
-        char c = fstrData.charAt(0);
-        if(((c>='a'&&c<='z')   ||   (c>='A'&&c<='Z')))
-        {        return   true;
-        }else{
-            return   false;
-        }
-    }
+//    /**
+//     * 判断字符串是否只包含数字
+//     * @param str
+//     * @return
+//     */
+//    public static boolean isNumeric(String str){
+//        Pattern pattern = Pattern.compile("[0-9]*");
+//        return pattern.matcher(str).matches();
+//    }
+//    /** * 纯字母
+//     * @param fstrData
+//     * @return */
+//    public static boolean isChar(String fstrData){
+//        char c = fstrData.charAt(0);
+//        if(((c>='a'&&c<='z')   ||   (c>='A'&&c<='Z')))
+//        {        return   true;
+//        }else{
+//            return   false;
+//        }
+//    }
 }
 
 

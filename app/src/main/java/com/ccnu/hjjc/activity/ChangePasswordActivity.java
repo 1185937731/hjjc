@@ -13,6 +13,7 @@ import com.ccnu.hjjc.http.Fault;
 import com.ccnu.hjjc.http.HttpLoader;
 import com.ccnu.hjjc.util.UserManage;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import rx.functions.Action1;
@@ -57,7 +58,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     Toast.makeText(ChangePasswordActivity.this, "请输入密码",Toast.LENGTH_LONG).show();
                 }else if(pwdlength < 6||pwdlength > 20){
                     Toast.makeText(ChangePasswordActivity.this, "密码长度应为6到20之间", Toast.LENGTH_LONG).show();
-                }else if(isNumeric(pwd_new)||isChar(pwd_new)){
+                }else if(!ispsd(pwd_new)){
                     Toast.makeText(ChangePasswordActivity.this, "密码不能全为数字或字母", Toast.LENGTH_LONG).show();
                 }else if("".equals(pwd_confirm)){
                     Toast.makeText(ChangePasswordActivity.this, "请确认密码", Toast.LENGTH_LONG).show();
@@ -111,35 +112,38 @@ public class ChangePasswordActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * 判断字符串是否只包含数字
-     * @param str
-     * @return
-     */
-    public static boolean isNumeric(String str){
-        Pattern pattern = Pattern.compile("[0-9]*");
-        return pattern.matcher(str).matches();
+    public static boolean ispsd(String psd) {
+        Pattern p = Pattern
+                .compile("^[a-zA-Z].*[0-9]|.*[0-9].*[a-zA-Z]");
+        Matcher m = p.matcher(psd);
+        return m.matches();
     }
-//    public static boolean isNumeric(String str) {
-//        for (int i = str.length(); --i >= 0; ) {
-//            if (!Character.isDigit(str.charAt(i))) {
+
+//    /** * 纯数字
+//     * @param str
+//     * @return */
+//    public static boolean isNumeric(String str){
+//        for (int i = str.length();--i>=0;){
+//            if (!Character.isDigit(str.charAt(i))){
 //                return false;
 //            }
 //        }
 //        return true;
 //    }
-
-    /** * 纯字母
-     * @param fstrData
-     * @return */
-    public static boolean isChar(String fstrData){
-        for (int i = fstrData.length(); --i >= 0; ) {
-            char c = fstrData.charAt(i);
-            if (!((c>='a'&&c<='z')   ||   (c>='A'&&c<='Z'))) {
-                return false;
-            }
-        }
-        return true;
-
-    }
+//
+//
+//    /** * 纯字母
+//     * @param data
+//     * @return */
+//    public static boolean isChar(String data) {
+//        for (int i = data.length();--i >= 0;) {
+//            char c = data.charAt(i);
+//            if (((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 }

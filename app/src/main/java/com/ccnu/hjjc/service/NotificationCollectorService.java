@@ -182,19 +182,26 @@ public class NotificationCollectorService extends NotificationListenerService {
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
         // TODO Auto-generated method stub
-        Bundle extras = sbn.getNotification().extras;
-        //  获取接收消息APP的包名
-        String notificationPkg = sbn.getPackageName();
-        // 获取接收消息的抬头
-        String notificationTitle = extras.getString(Notification.EXTRA_TITLE);
-        // 获取接收消息的内容
-        String notificationText = extras.getString(Notification.EXTRA_TEXT);
-        Log.e(TAG, "Notification removed " + notificationTitle + " & " + notificationText + " & " + notificationPkg);
-        if (notificationTitle.contains("报警通知！")) {
-            if(notificationText.contains("监测环境突发烟雾报警，请立即处理！")){
-                isOpenFlashLight = false;
+        try {
+            Bundle extras = sbn.getNotification().extras;
+            //  获取接收消息APP的包名
+            String notificationPkg = sbn.getPackageName();
+            // 获取接收消息的抬头
+            String notificationTitle = extras.getString(Notification.EXTRA_TITLE);
+            // 获取接收消息的内容
+            String notificationText = extras.getString(Notification.EXTRA_TEXT);
+            Log.e(TAG, "Notification removed " + notificationTitle + " & " + notificationText + " & " + notificationPkg);
+            if (notificationTitle.contains("报警通知！")) {
+                if(notificationText.contains("监测环境突发烟雾报警，请立即处理！")){
+                    isOpenFlashLight = false;
+                }
             }
+
+        }catch(Exception e ){
+            e.printStackTrace();
         }
+
+
     }
 
     @Override

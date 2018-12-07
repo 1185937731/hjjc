@@ -120,15 +120,26 @@ public class ChangePasswordActivity extends AppCompatActivity {
         Pattern pattern = Pattern.compile("[0-9]*");
         return pattern.matcher(str).matches();
     }
+//    public static boolean isNumeric(String str) {
+//        for (int i = str.length(); --i >= 0; ) {
+//            if (!Character.isDigit(str.charAt(i))) {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
+
     /** * 纯字母
      * @param fstrData
      * @return */
     public static boolean isChar(String fstrData){
-        char c = fstrData.charAt(0);
-        if(((c>='a'&&c<='z')   ||   (c>='A'&&c<='Z')))
-        {        return   true;
-        }else{
-            return   false;
+        for (int i = fstrData.length(); --i >= 0; ) {
+            char c = fstrData.charAt(i);
+            if (!((c>='a'&&c<='z')   ||   (c>='A'&&c<='Z'))) {
+                return false;
+            }
         }
+        return true;
+
     }
 }

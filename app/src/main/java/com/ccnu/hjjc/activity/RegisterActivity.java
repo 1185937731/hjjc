@@ -66,8 +66,10 @@ public class RegisterActivity extends AppCompatActivity{
                     Toast.makeText(RegisterActivity.this, "请输入密码", Toast.LENGTH_LONG).show();
                 }else if(pwdlength < 6||pwdlength > 20){
                     Toast.makeText(RegisterActivity.this, "密码长度应为6到20之间", Toast.LENGTH_LONG).show();
-                }else if(isNumeric(password)||isChar(password)){
-                    Toast.makeText(RegisterActivity.this, "密码不能全为数字或字母", Toast.LENGTH_LONG).show();
+                }else if(isChar(password)){
+                    Toast.makeText(RegisterActivity.this, "密码不能全为字母", Toast.LENGTH_LONG).show();
+                }else if(isNumeric(password)){
+                    Toast.makeText(RegisterActivity.this, "密码不能全为数字", Toast.LENGTH_LONG).show();
                 }else if("".equals(passwordconf)){
                     Toast.makeText(RegisterActivity.this, "请确认密码", Toast.LENGTH_LONG).show();
                 }else if(!password.equals(passwordconf)){
@@ -157,16 +159,27 @@ public class RegisterActivity extends AppCompatActivity{
         Pattern pattern = Pattern.compile("[0-9]*");
         return pattern.matcher(str).matches();
     }
+//    public static boolean isNumeric(String str) {
+//        for (int i = str.length(); --i >= 0; ) {
+//            if (!Character.isDigit(str.charAt(i))) {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
+
     /** * 纯字母
      * @param fstrData
      * @return */
     public static boolean isChar(String fstrData){
-        char c = fstrData.charAt(0);
-        if(((c>='a'&&c<='z')   ||   (c>='A'&&c<='Z')))
-        {        return   true;
-        }else{
-            return   false;
+        for (int i = fstrData.length(); --i >= 0; ) {
+            char c = fstrData.charAt(i);
+            if (!((c>='a'&&c<='z')   ||   (c>='A'&&c<='Z'))) {
+                return false;
+            }
         }
+        return true;
+
     }
 
 

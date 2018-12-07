@@ -67,17 +67,6 @@ public class NotificationCollectorService extends NotificationListenerService {
             channel.enableVibration(true);
             channel.setVibrationPattern(new long[]{100, 200, 300});
             manager.createNotificationChannel(channel);
-        }
-
-        notification = new Notification.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("报警通知！")
-                .setContentText("监测环境突发烟雾报警，请立即处理！")
-                .setContentIntent(contentIntent)
-                .setVibrate(pattern)
-                .setSound(sound)
-                .build();// getNotification()
-        try{
             notification = new Notification.Builder(this)
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setContentTitle("报警通知！")
@@ -87,9 +76,15 @@ public class NotificationCollectorService extends NotificationListenerService {
                     .setSound(sound)
                     .setChannelId(channelID)
                     .build();// getNotification()
-        }catch (Exception e)
-        {
-            e.printStackTrace();
+        }else{
+            notification = new Notification.Builder(this)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle("报警通知！")
+                    .setContentText("监测环境突发烟雾报警，请立即处理！")
+                    .setContentIntent(contentIntent)
+                    .setVibrate(pattern)
+                    .setSound(sound)
+                    .build();// getNotification()
         }
         notification.flags = Notification.FLAG_INSISTENT;
     }
